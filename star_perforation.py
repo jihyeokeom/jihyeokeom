@@ -144,7 +144,9 @@ def main():
             extrusion = Rhino.Geometry.Surface.CreateExtrusion(star_curve, extrude_vec)
             if extrusion:
                 brep = extrusion.ToBrep()
-                brep.Cap(Rhino.RhinoMath.ZeroTolerance)
+                capped = brep.CapPlanarHoles(Rhino.RhinoMath.ZeroTolerance)
+                if capped:
+                    brep = capped
 
                 cutter_id = rs.AddBrep(brep)
                 if cutter_id:
