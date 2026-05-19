@@ -158,7 +158,7 @@ def main():
         rs.EnableRedraw(True)
         return
 
-    print(f"{len(created_cutters)}개의 별 모양 커터를 생성했습니다. Boolean Difference를 수행합니다...")
+    print("{}개의 별 모양 커터를 생성했습니다. Boolean Difference를 수행합니다...".format(len(created_cutters)))
 
     # ── Boolean Difference ─────────────────────────────────────────
     result = rs.BooleanDifference([obj_id], created_cutters, delete_input=True)
@@ -166,7 +166,7 @@ def main():
     rs.EnableRedraw(True)
 
     if result:
-        print(f"완료! {len(created_cutters)}개의 별 모양 타공이 생성되었습니다.")
+        print("완료! {}개의 별 모양 타공이 생성되었습니다.".format(len(created_cutters)))
         rs.SelectObjects(result)
     else:
         print("Boolean Difference 실패. 커터 오브젝트를 직접 확인하세요.")
