@@ -12,6 +12,8 @@ Rhino 6 - 별 모양 타공 스크립트
 
 import rhinoscriptsyntax as rs
 import Rhino
+import scriptcontext as sc
+import System
 import math
 
 
@@ -148,8 +150,8 @@ def main():
                 if capped:
                     brep = capped
 
-                cutter_id = rs.AddBrep(brep)
-                if cutter_id:
+                cutter_id = sc.doc.Objects.AddBrep(brep)
+                if cutter_id != System.Guid.Empty:
                     created_cutters.append(cutter_id)
 
             y += spacing_y
