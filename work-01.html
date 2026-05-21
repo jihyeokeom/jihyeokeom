@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>none — Warygary Studio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gray-light: #e8e8e8;
+      --gray-mid: #999999;
+      --font: 'Pretendard', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      line-height: 1.6;
+      letter-spacing: -0.03em;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+      background-color: var(--white);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    nav.scrolled {
+      border-color: var(--gray-light);
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gray-mid);
+    }
+
+    /* ── WORK HEADER ── */
+    .work-header {
+      padding: 140px 48px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--black);
+    }
+
+    .work-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .work-number {
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: -0.03em;
+    }
+
+    .work-title {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .back-link {
+      font-size: 12px;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      color: var(--gray-mid);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+      padding-bottom: 4px;
+    }
+
+    .back-link:hover {
+      color: var(--black);
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background-color: var(--gray-light);
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      background-color: var(--gray-light);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .gallery-item.tall {
+      aspect-ratio: 3 / 4;
+    }
+
+    .gallery-item.wide {
+      aspect-ratio: 4 / 3;
+    }
+
+    /* ── PRODUCT INFO ── */
+    .work-info {
+      padding: 64px 48px 100px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      border-top: 1px solid var(--gray-light);
+    }
+
+    .info-label {
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: -0.03em;
+      padding-top: 4px;
+    }
+
+    .info-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-name {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .info-desc {
+      font-size: 13px;
+      color: var(--gray-mid);
+      line-height: 1.9;
+      max-width: 560px;
+      letter-spacing: -0.03em;
+    }
+
+    .info-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .info-meta-row {
+      display: flex;
+      gap: 24px;
+      font-size: 12px;
+    }
+
+    .meta-key {
+      color: var(--gray-mid);
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .meta-val {
+      color: var(--black);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 22px 24px; }
+      .work-header { padding: 120px 24px 36px; }
+      .gallery { grid-template-columns: 1fr; }
+      .work-info { padding: 48px 24px 80px; grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 18px 20px; }
+      .nav-links { gap: 20px; }
+      .work-header { padding: 100px 20px 28px; }
+      .work-info { padding: 36px 20px 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">Warygary Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html#works">Works</a></li>
+      <li><a href="index.html#designer">Designer</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- WORK HEADER -->
+  <div class="work-header">
+    <div class="work-header-left">
+      <span class="work-number">01 / 06</span>
+      <h1 class="work-title">none</h1>
+    </div>
+    <a href="index.html#works" class="back-link">← Back to Works</a>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="gallery-item tall">
+      <img src="images/works/01/02.jpg" alt="Work 01 — View 02" />
+    </div>
+    <div class="gallery-item tall">
+      <img src="images/works/01/03.jpg" alt="Work 01 — View 03" />
+    </div>
+    <div class="gallery-item wide">
+      <img src="images/works/01/04.jpg" alt="Work 01 — View 04" />
+    </div>
+    <div class="gallery-item wide">
+      <img src="images/works/01/05.jpg" alt="Work 01 — View 05" />
+    </div>
+  </div>
+
+  <!-- PRODUCT INFO -->
+  <div class="work-info">
+    <p class="info-label">Product</p>
+    <div class="info-content">
+      <p class="info-name">none</p>
+      <p class="info-desc">none</p>
+      <div class="info-meta">
+        <div class="info-meta-row">
+          <span class="meta-key">Year</span>
+          <span class="meta-val">none</span>
+        </div>
+        <div class="info-meta-row">
+          <span class="meta-key">Material</span>
+          <span class="meta-val">none</span>
+        </div>
+        <div class="info-meta-row">
+          <span class="meta-key">Designer</span>
+          <span class="meta-val">none</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+
+</body>
+</html>

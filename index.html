@@ -171,6 +171,9 @@
 
     .work-item {
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .work-image {
@@ -179,6 +182,18 @@
       background-color: var(--gray-light);
       overflow: hidden;
       position: relative;
+    }
+
+    .work-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .work-item:hover .work-image img {
+      transform: scale(1.03);
     }
 
     .work-image::after {
@@ -394,14 +409,16 @@
 
     <div class="works-grid">
 
-      <div class="work-item">
-        <div class="work-image"></div>
+      <a class="work-item" href="work-01.html">
+        <div class="work-image">
+          <img src="images/works/01/main.jpg" alt="Work 01" />
+        </div>
         <div class="work-info">
           <p class="work-index">01</p>
           <p class="work-name">none</p>
           <p class="work-desc">none</p>
         </div>
-      </div>
+      </a>
 
       <div class="work-item">
         <div class="work-image"></div>
