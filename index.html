@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jodae Studio</title>
+  <title>Warygary Studio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -16,7 +17,7 @@
       --white: #ffffff;
       --gray-light: #e8e8e8;
       --gray-mid: #999999;
-      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font: 'Pretendard', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
     html {
@@ -54,8 +55,7 @@
     .nav-logo {
       font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: 0.02em;
       text-decoration: none;
       color: var(--black);
     }
@@ -105,6 +105,30 @@
 
     .hero-title em {
       font-style: italic;
+    }
+
+    .hero-desc {
+      margin-top: 48px;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-desc p {
+      font-size: 12px;
+      line-height: 1.85;
+      color: var(--gray-mid);
+      letter-spacing: 0.01em;
+      word-break: keep-all;
+    }
+
+    .hero-desc .desc-ko {
+      font-size: 12px;
+    }
+
+    .hero-desc .desc-en {
+      font-size: 11.5px;
     }
 
     /* ── SECTION BASE ── */
@@ -342,7 +366,7 @@
 
   <!-- NAV -->
   <nav id="navbar">
-    <a href="#home" class="nav-logo">Jodae Studio</a>
+    <a href="#home" class="nav-logo">Warygary Studio</a>
     <ul class="nav-links">
       <li><a href="#works">Works</a></li>
       <li><a href="#designer">Designer</a></li>
@@ -354,6 +378,10 @@
   <div id="home">
     <p class="hero-label">Industrial Design Studio</p>
     <h1 class="hero-title">We design <em>objects</em><br>that matter.</h1>
+    <div class="hero-desc">
+      <p class="desc-ko">와리가리 스튜디오는 특정한 장소에 얽매이지 않고, 언제 어디서나 경험할 수 있는 이동형 전시의 가능성에 주목합니다. 우리는 일상 속 평범한 요소들에 집중하며, 이를 직관적이고 감성적인 어포던스 기반의 디자인 방법론으로 풀어내고자 합니다. 나아가, 이러한 디자인이 오늘날 왜 필요한지 그 이유와 가치를 증명하고자 합니다.</p>
+      <p class="desc-en">Warigari Studio explores portable exhibition experiences that transcend the limitations of place, enabling engagement anytime and anywhere. Focusing on the ordinary moments of everyday life, we create intuitive and emotional experiences through an affordance-driven design approach, while exploring why such design is needed in today's society.</p>
+    </div>
   </div>
 
   <!-- WORKS -->
@@ -462,8 +490,8 @@
     </div>
 
     <div class="contact-footer">
-      <span class="contact-footer-left">Jodae Studio &mdash; Seoul, Korea</span>
-      <span class="contact-footer-right">&copy; 2024 Jodae Studio</span>
+      <span class="contact-footer-left">Warygary Studio &mdash; Seoul, Korea</span>
+      <span class="contact-footer-right">&copy; 2024 Warygary Studio</span>
     </div>
   </section>
 
