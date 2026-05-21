@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jodae Studio</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gray-light: #e8e8e8;
+      --gray-mid: #999999;
+      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+      background-color: var(--white);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    nav.scrolled {
+      border-color: var(--gray-light);
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gray-mid);
+    }
+
+    /* ── HERO ── */
+    #home {
+      padding-top: 160px;
+      padding-bottom: 80px;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 100px 48px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-top: 1px solid var(--black);
+      padding-top: 16px;
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-count {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--gray-mid);
+    }
+
+    /* ── WORKS ── */
+    #works {
+      background-color: var(--white);
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .work-item {
+      cursor: pointer;
+    }
+
+    .work-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: var(--gray-light);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .work-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: var(--black);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .work-item:hover .work-image::after {
+      opacity: 0.06;
+    }
+
+    .work-info {
+      padding: 20px 0 40px;
+    }
+
+    .work-index {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--gray-mid);
+      margin-bottom: 8px;
+    }
+
+    .work-name {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      margin-bottom: 6px;
+    }
+
+    .work-desc {
+      font-size: 12px;
+      color: var(--gray-mid);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── DESIGNER ── */
+    #designer {
+      background-color: var(--white);
+      border-top: 1px solid var(--gray-light);
+    }
+
+    .designer-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .designer-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .designer-image {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background-color: var(--gray-light);
+    }
+
+    .designer-info {
+      padding: 24px 0 0;
+    }
+
+    .designer-name {
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .designer-role {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background-color: var(--white);
+      border-top: 1px solid var(--gray-light);
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 80px;
+    }
+
+    .contact-email {
+      font-size: clamp(20px, 3.5vw, 42px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--black);
+      display: inline-block;
+      position: relative;
+    }
+
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--black);
+      transition: width 0.35s ease;
+    }
+
+    .contact-email:hover::after {
+      width: 100%;
+    }
+
+    .contact-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 4px;
+    }
+
+    .contact-footer-left {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+    }
+
+    .contact-footer-right {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--gray-mid);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 22px 24px;
+      }
+
+      #home,
+      section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 18px 20px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      #home,
+      section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .designer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">Jodae Studio</a>
+    <ul class="nav-links">
+      <li><a href="#works">Works</a></li>
+      <li><a href="#designer">Designer</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="home">
+    <p class="hero-label">Industrial Design Studio</p>
+    <h1 class="hero-title">We design <em>objects</em><br>that matter.</h1>
+  </div>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="section-header">
+      <span class="section-title">Works</span>
+      <span class="section-count">06 Projects</span>
+    </div>
+
+    <div class="works-grid">
+
+      <div class="work-item">
+        <div class="work-image"></div>
+        <div class="work-info">
+          <p class="work-index">01</p>
+          <p class="work-name">none</p>
+          <p class="work-desc">none</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-image"></div>
+        <div class="work-info">
+          <p class="work-index">02</p>
+          <p class="work-name">none</p>
+          <p class="work-desc">none</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-image"></div>
+        <div class="work-info">
+          <p class="work-index">03</p>
+          <p class="work-name">none</p>
+          <p class="work-desc">none</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-image"></div>
+        <div class="work-info">
+          <p class="work-index">04</p>
+          <p class="work-name">none</p>
+          <p class="work-desc">none</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-image"></div>
+        <div class="work-info">
+          <p class="work-index">05</p>
+          <p class="work-name">none</p>
+          <p class="work-desc">none</p>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-image"></div>
+        <div class="work-info">
+          <p class="work-index">06</p>
+          <p class="work-name">none</p>
+          <p class="work-desc">none</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DESIGNER -->
+  <section id="designer">
+    <div class="section-header">
+      <span class="section-title">Designer</span>
+      <span class="section-count">02 Members</span>
+    </div>
+
+    <div class="designer-grid">
+
+      <div class="designer-item">
+        <div class="designer-image"></div>
+        <div class="designer-info">
+          <p class="designer-name">Junwoo Lim</p>
+          <p class="designer-role">Industrial Designer</p>
+        </div>
+      </div>
+
+      <div class="designer-item">
+        <div class="designer-image"></div>
+        <div class="designer-info">
+          <p class="designer-name">Jihyeok Eom</p>
+          <p class="designer-role">Industrial Designer</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-title">Contact</span>
+    </div>
+
+    <div class="contact-body">
+      <a href="mailto:shjh0325@naver.com" class="contact-email">shjh0325@naver.com</a>
+      <a href="mailto:info.limjunwoo@gmail.com" class="contact-email">info.limjunwoo@gmail.com</a>
+    </div>
+
+    <div class="contact-footer">
+      <span class="contact-footer-left">Jodae Studio &mdash; Seoul, Korea</span>
+      <span class="contact-footer-right">&copy; 2024 Jodae Studio</span>
+    </div>
+  </section>
+
+  <script>
+    // Nav scroll shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Active nav link highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' });
+
+    document.querySelectorAll('#works, #designer, #contact').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
