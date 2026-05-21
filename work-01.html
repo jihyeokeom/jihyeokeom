@@ -253,6 +253,104 @@
     .back-link:hover { color: var(--black); }
     .copy { font-size: 11px; color: var(--gray-mid); }
 
+    /* ── LIGHTBOX ── */
+    .lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.92);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-overlay.open { display: flex; }
+
+    .lb-img-wrap {
+      position: relative;
+      max-width: 90vw;
+      max-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-img-wrap img {
+      max-width: 90vw;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+    }
+
+    .lb-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 36px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 20px;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      z-index: 1001;
+    }
+    .lb-btn:hover { opacity: 1; }
+    .lb-btn.prev { left: 16px; }
+    .lb-btn.next { right: 16px; }
+
+    .lb-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      z-index: 1001;
+    }
+    .lb-close:hover { opacity: 1; }
+
+    .lb-dots {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .lb-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .lb-dot.active { background: #fff; }
+
+    .lb-counter {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      z-index: 1001;
+    }
+
+    /* Clickable images */
+    .main-image-box img,
+    .carousel-slide img {
+      cursor: zoom-in;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 22px 24px; }
@@ -375,44 +473,131 @@
 
   </div>
 
+  <!-- LIGHTBOX -->
+  <div class="lb-overlay" id="lb">
+    <button class="lb-close" id="lb-close">&#215;</button>
+    <span class="lb-counter" id="lb-counter"></span>
+    <button class="lb-btn prev" id="lb-prev">&#8249;</button>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="" />
+    </div>
+    <button class="lb-btn next" id="lb-next">&#8250;</button>
+    <div class="lb-dots" id="lb-dots"></div>
+  </div>
+
   <script>
-    // Nav scroll
+    // ── Nav scroll ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // Carousel
-    const track = document.getElementById('track');
-    const slides = track.querySelectorAll('.carousel-slide');
-    const dotsWrap = document.getElementById('dots');
-    let current = 0;
+    // ── All images (main + carousel 02~05) ──
+    const allSrcs = [
+      'images/works/01/main.jpg',
+      'images/works/01/02.jpg',
+      'images/works/01/03.jpg',
+      'images/works/01/04.jpg',
+      'images/works/01/05.jpg'
+    ];
+    const total = allSrcs.length;
 
-    // Build dots
+    // ── Carousel ──
+    const track   = document.getElementById('track');
+    const slides  = track.querySelectorAll('.carousel-slide');
+    const dotsWrap = document.getElementById('dots');
+    let carCurrent = 0;
+
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goTo(i));
+      dot.addEventListener('click', () => carGoTo(i));
       dotsWrap.appendChild(dot);
     });
 
-    function goTo(index) {
-      current = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${current * 100}%)`;
+    function carGoTo(index) {
+      carCurrent = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${carCurrent * 100}%)`;
       dotsWrap.querySelectorAll('.dot').forEach((d, i) => {
-        d.classList.toggle('active', i === current);
+        d.classList.toggle('active', i === carCurrent);
       });
     }
 
-    document.querySelector('.carousel-btn.prev').addEventListener('click', () => goTo(current - 1));
-    document.querySelector('.carousel-btn.next').addEventListener('click', () => goTo(current + 1));
+    document.querySelector('.carousel-btn.prev').addEventListener('click', () => carGoTo(carCurrent - 1));
+    document.querySelector('.carousel-btn.next').addEventListener('click', () => carGoTo(carCurrent + 1));
 
-    // Swipe support
-    let startX = 0;
-    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    let carStartX = 0;
+    track.addEventListener('touchstart', e => { carStartX = e.touches[0].clientX; });
     track.addEventListener('touchend', e => {
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      const diff = carStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) carGoTo(carCurrent + (diff > 0 ? 1 : -1));
+    });
+
+    // ── Lightbox ──
+    const lb       = document.getElementById('lb');
+    const lbImg    = document.getElementById('lb-img');
+    const lbDots   = document.getElementById('lb-dots');
+    const lbCounter = document.getElementById('lb-counter');
+    let lbCurrent  = 0;
+
+    // Build lightbox dots
+    allSrcs.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => lbGoTo(i));
+      lbDots.appendChild(dot);
+    });
+
+    function lbGoTo(index) {
+      lbCurrent = (index + total) % total;
+      lbImg.src = allSrcs[lbCurrent];
+      lbCounter.textContent = `${lbCurrent + 1} / ${total}`;
+      lbDots.querySelectorAll('.lb-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === lbCurrent);
+      });
+    }
+
+    function lbOpen(index) {
+      lbGoTo(index);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function lbClose() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Main image click → index 0
+    document.querySelector('.main-image-box img')
+      .addEventListener('click', () => lbOpen(0));
+
+    // Carousel slide clicks → index 1~4
+    slides.forEach((slide, i) => {
+      slide.querySelector('img').addEventListener('click', () => lbOpen(i + 1));
+    });
+
+    document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent - 1); });
+    document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent + 1); });
+    document.getElementById('lb-close').addEventListener('click', lbClose);
+
+    // Click outside image to close
+    lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft')  lbGoTo(lbCurrent - 1);
+      if (e.key === 'ArrowRight') lbGoTo(lbCurrent + 1);
+      if (e.key === 'Escape')     lbClose();
+    });
+
+    // Touch swipe in lightbox
+    let lbStartX = 0;
+    lb.addEventListener('touchstart', e => { lbStartX = e.touches[0].clientX; });
+    lb.addEventListener('touchend', e => {
+      const diff = lbStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) lbGoTo(lbCurrent + (diff > 0 ? 1 : -1));
     });
   </script>
 
