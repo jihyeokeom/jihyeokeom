@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>none — Warygary Studio</title>
+  <title>Raindrop — Warygary Studio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
     *, *::before, *::after {
@@ -52,7 +52,6 @@
     .nav-logo {
       font-size: 15px;
       font-weight: 600;
-      letter-spacing: -0.03em;
       text-decoration: none;
       color: var(--black);
     }
@@ -65,7 +64,6 @@
 
     .nav-links a {
       font-size: 13px;
-      letter-spacing: -0.03em;
       text-decoration: none;
       color: var(--black);
       transition: color 0.2s;
@@ -77,41 +75,43 @@
 
     /* ── WORK HEADER ── */
     .work-header {
-      padding: 140px 48px 48px;
+      padding: 140px 48px 40px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 1px solid var(--black);
     }
 
     .work-header-left {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     .work-number {
       font-size: 11px;
       color: var(--gray-mid);
-      letter-spacing: -0.03em;
     }
 
     .work-title {
-      font-size: clamp(24px, 3vw, 40px);
+      font-size: clamp(28px, 4vw, 52px);
       font-weight: 400;
-      letter-spacing: -0.03em;
+    }
+
+    .work-subtitle {
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-top: 4px;
     }
 
     .back-link {
       font-size: 12px;
-      letter-spacing: -0.03em;
       text-decoration: none;
       color: var(--gray-mid);
       display: flex;
       align-items: center;
       gap: 6px;
       transition: color 0.2s;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
     }
 
     .back-link:hover {
@@ -122,13 +122,16 @@
     .gallery {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
       gap: 2px;
       background-color: var(--gray-light);
+      margin-top: 2px;
     }
 
     .gallery-item {
       overflow: hidden;
       background-color: var(--gray-light);
+      position: relative;
     }
 
     .gallery-item img {
@@ -136,93 +139,213 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.6s ease;
+      transition: transform 0.7s ease;
     }
 
     .gallery-item:hover img {
       transform: scale(1.02);
     }
 
-    .gallery-item.tall {
+    /* Image 01: spans full width */
+    .gallery-item.hero {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Images 02 & 03 */
+    .gallery-item.portrait {
       aspect-ratio: 3 / 4;
     }
 
-    .gallery-item.wide {
+    /* Images 04 & 05 */
+    .gallery-item.landscape {
       aspect-ratio: 4 / 3;
     }
 
-    /* ── PRODUCT INFO ── */
-    .work-info {
-      padding: 64px 48px 100px;
+    /* ── CONTENT ── */
+    .work-content {
+      padding: 80px 48px 60px;
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 48px;
-      border-top: 1px solid var(--gray-light);
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      border-top: 1px solid var(--black);
     }
 
-    .info-label {
-      font-size: 11px;
-      color: var(--gray-mid);
-      letter-spacing: -0.03em;
-      padding-top: 4px;
-    }
-
-    .info-content {
+    .desc-section {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 40px;
     }
 
-    .info-name {
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: -0.03em;
+    .desc-block {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .info-desc {
+    .desc-lang {
+      font-size: 10px;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .desc-text {
       font-size: 13px;
-      color: var(--gray-mid);
-      line-height: 1.9;
-      max-width: 560px;
-      letter-spacing: -0.03em;
+      line-height: 1.95;
+      color: #333;
+      word-break: keep-all;
     }
 
-    .info-meta {
+    /* ── PURCHASE ── */
+    .purchase-section {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 8px;
+      justify-content: space-between;
     }
 
-    .info-meta-row {
+    .purchase-top {
       display: flex;
-      gap: 24px;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .product-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
       font-size: 12px;
     }
 
     .meta-key {
       color: var(--gray-mid);
-      width: 80px;
-      flex-shrink: 0;
     }
 
     .meta-val {
       color: var(--black);
     }
 
+    .price-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .price-label {
+      font-size: 10px;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .price-krw {
+      font-size: clamp(24px, 2.5vw, 36px);
+      font-weight: 400;
+    }
+
+    .price-usd {
+      font-size: 13px;
+      color: var(--gray-mid);
+      margin-top: 2px;
+    }
+
+    .btn-purchase {
+      display: block;
+      width: 100%;
+      padding: 18px 24px;
+      background-color: var(--black);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.25s;
+      margin-top: 40px;
+      text-decoration: none;
+    }
+
+    .btn-purchase:hover {
+      background-color: #333;
+    }
+
+    .btn-inquiry {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background-color: transparent;
+      color: var(--black);
+      font-family: var(--font);
+      font-size: 12px;
+      letter-spacing: -0.03em;
+      text-align: center;
+      border: 1px solid var(--gray-light);
+      cursor: pointer;
+      transition: border-color 0.25s;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+
+    .btn-inquiry:hover {
+      border-color: var(--black);
+    }
+
+    /* ── FOOTER ── */
+    .work-footer {
+      padding: 40px 48px;
+      border-top: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-nav a {
+      font-size: 12px;
+      color: var(--gray-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--black);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--gray-mid);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 22px 24px; }
-      .work-header { padding: 120px 24px 36px; }
-      .gallery { grid-template-columns: 1fr; }
-      .work-info { padding: 48px 24px 80px; grid-template-columns: 1fr; gap: 24px; }
+      .work-header { padding: 120px 24px 32px; }
+      .work-content { padding: 60px 24px; grid-template-columns: 1fr; gap: 48px; }
+      .gallery-item.hero { aspect-ratio: 4 / 3; }
+      .work-footer { padding: 32px 24px; }
     }
 
     @media (max-width: 600px) {
       nav { padding: 18px 20px; }
       .nav-links { gap: 20px; }
-      .work-header { padding: 100px 20px 28px; }
-      .work-info { padding: 36px 20px 64px; }
+      .work-header { padding: 100px 20px 24px; }
+      .work-content { padding: 48px 20px; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-item.hero { aspect-ratio: 3 / 4; }
+      .work-footer { padding: 28px 20px; flex-direction: column; gap: 16px; }
     }
   </style>
 </head>
@@ -242,48 +365,92 @@
   <div class="work-header">
     <div class="work-header-left">
       <span class="work-number">01 / 06</span>
-      <h1 class="work-title">none</h1>
+      <h1 class="work-title">Raindrop</h1>
+      <p class="work-subtitle">Umbrella Stand</p>
     </div>
     <a href="index.html#works" class="back-link">← Back to Works</a>
   </div>
 
-  <!-- GALLERY -->
+  <!-- GALLERY: 5 images -->
   <div class="gallery">
-    <div class="gallery-item tall">
-      <img src="images/works/01/02.jpg" alt="Work 01 — View 02" />
+    <!-- 01: Hero full-width -->
+    <div class="gallery-item hero">
+      <img src="images/works/01/main.jpg" alt="Raindrop — Main" />
     </div>
-    <div class="gallery-item tall">
-      <img src="images/works/01/03.jpg" alt="Work 01 — View 03" />
+    <!-- 02 & 03: Portrait pair -->
+    <div class="gallery-item portrait">
+      <img src="images/works/01/02.jpg" alt="Raindrop — 02" />
     </div>
-    <div class="gallery-item wide">
-      <img src="images/works/01/04.jpg" alt="Work 01 — View 04" />
+    <div class="gallery-item portrait">
+      <img src="images/works/01/03.jpg" alt="Raindrop — 03" />
     </div>
-    <div class="gallery-item wide">
-      <img src="images/works/01/05.jpg" alt="Work 01 — View 05" />
+    <!-- 04 & 05: Landscape pair -->
+    <div class="gallery-item landscape">
+      <img src="images/works/01/04.jpg" alt="Raindrop — 04" />
+    </div>
+    <div class="gallery-item landscape">
+      <img src="images/works/01/05.jpg" alt="Raindrop — 05" />
     </div>
   </div>
 
-  <!-- PRODUCT INFO -->
-  <div class="work-info">
-    <p class="info-label">Product</p>
-    <div class="info-content">
-      <p class="info-name">none</p>
-      <p class="info-desc">none</p>
-      <div class="info-meta">
-        <div class="info-meta-row">
-          <span class="meta-key">Year</span>
-          <span class="meta-val">none</span>
-        </div>
-        <div class="info-meta-row">
-          <span class="meta-key">Material</span>
-          <span class="meta-val">none</span>
-        </div>
-        <div class="info-meta-row">
-          <span class="meta-key">Designer</span>
-          <span class="meta-val">none</span>
-        </div>
+  <!-- CONTENT: Description + Purchase -->
+  <div class="work-content">
+
+    <!-- LEFT: Description KO + EN -->
+    <div class="desc-section">
+      <div class="desc-block">
+        <span class="desc-lang">한국어</span>
+        <p class="desc-text">전세계의 연평균 강수일은 약 100일에 달하며, 이때 버려지는 빗물의 양은 상당합니다. 빗물은 석회질이 없어 토양을 경화시키지 않고, 자연 그대로의 순수한 상태를 유지하는 친환경 자원입니다. 이를 활용해 1인 가구가 손쉽게 식물을 돌볼 수 있도록 하는 것이 프로젝트의 출발점이었습니다. 빗물의 흐름을 디자인 요소로 삼아, 자연을 수동적으로 소비하는 것이 아니라 일상에서 능동적으로 받아들이고 경험하는 방식을 제안합니다. 1인 가구의 생활 방식은 효율성과 자기 돌봄(self-care)에 집중하는 방향으로 변화하고 있습니다. 하지만, 도심 속에서 자연과 교감할 기회는 제한적입니다. RAINDROP은 실내에서도 자연과의 연결을 지속할 수 있도록 설계되었습니다. 우산을 걸어 빗물을 모으고 이를 식물에 공급하는 과정은 단순한 물리적 행위가 아니라, 사용자에게 작은 돌봄의 루틴을 제공합니다. 빗물은 무료이며, 화학 첨가물이 없는 자연수로 식물과 토양에 부담을 주지 않습니다. 이를 통해 RAINDROP은 1인 가구의 생활 속에 자연스럽게 스며들어, 자원을 효율적으로 활용하면서도 정서적 만족감을 주는 디자인을 제안합니다.</p>
+      </div>
+      <div class="desc-block">
+        <span class="desc-lang">English</span>
+        <p class="desc-text">The world experiences an average of 100 rainy days per year, yet a significant amount of rainwater goes to waste. Unlike tap water, rainwater is free of limestone, making it an eco-friendly resource that does not harden the soil and maintains its natural purity. This project started with the idea of utilizing rainwater to help single-person households care for plants more easily. By incorporating the flow of rainwater as a design element, RAINDROP proposes a way to actively engage with nature in daily life, rather than merely consuming it passively.</p>
       </div>
     </div>
+
+    <!-- RIGHT: Purchase -->
+    <div class="purchase-section">
+      <div class="purchase-top">
+        <div class="product-meta">
+          <div class="meta-row">
+            <span class="meta-key">Product</span>
+            <span class="meta-val">Raindrop — Umbrella Stand</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">Designer</span>
+            <span class="meta-val">Warygary Studio</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">Material</span>
+            <span class="meta-val">none</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">Year</span>
+            <span class="meta-val">none</span>
+          </div>
+        </div>
+
+        <div class="price-block">
+          <span class="price-label">Price</span>
+          <span class="price-krw">₩1,200,000</span>
+          <span class="price-usd">$900 USD</span>
+        </div>
+      </div>
+
+      <div>
+        <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
+        <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="work-footer">
+    <div class="footer-nav">
+      <a href="index.html#works">← All Works</a>
+    </div>
+    <span class="footer-copy">© 2024 Warygary Studio</span>
   </div>
 
   <script>
