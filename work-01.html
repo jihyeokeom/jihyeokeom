@@ -107,6 +107,47 @@
     .price-krw { font-size: clamp(22px, 2.5vw, 34px); font-weight: 400; }
     .price-usd { font-size: 13px; color: var(--gray-mid); }
 
+    /* ── DESC IN INFO ── */
+    .info-desc-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--gray-light);
+      width: fit-content;
+    }
+
+    .lang-btn {
+      padding: 5px 14px;
+      font-family: var(--font);
+      font-size: 11px;
+      letter-spacing: -0.03em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gray-mid);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .info-desc-text {
+      font-size: 12px;
+      line-height: 1.9;
+      color: #555;
+      word-break: keep-all;
+      display: none;
+    }
+
+    .info-desc-text.visible { display: block; }
+
     .btn-group { display: flex; flex-direction: column; gap: 8px; }
     .btn-purchase {
       display: block;
@@ -423,6 +464,15 @@
           </div>
         </div>
 
+        <div class="info-desc-block">
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="ko">KO</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <p class="info-desc-text visible" id="desc-ko">전세계의 연평균 강수일은 약 100일에 달하며, 이때 버려지는 빗물의 양은 상당합니다. 빗물은 석회질이 없어 토양을 경화시키지 않고, 자연 그대로의 순수한 상태를 유지하는 친환경 자원입니다. 이를 활용해 1인 가구가 손쉽게 식물을 돌볼 수 있도록 하는 것이 프로젝트의 출발점이었습니다. RAINDROP은 실내에서도 자연과의 연결을 지속할 수 있도록 설계되었으며, 빗물의 흐름을 디자인 요소로 삼아 자연을 능동적으로 받아들이는 방식을 제안합니다.</p>
+          <p class="info-desc-text" id="desc-en">The world experiences an average of 100 rainy days per year, yet a significant amount of rainwater goes to waste. Unlike tap water, rainwater is free of limestone — an eco-friendly resource that does not harden the soil. RAINDROP proposes a way to actively engage with nature in daily life, utilizing the flow of rainwater as a design element to help single-person households care for plants more easily.</p>
+        </div>
+
         <div class="btn-group">
           <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
           <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
@@ -486,6 +536,16 @@
   </div>
 
   <script>
+    // ── Language toggle ──
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b === btn));
+        document.getElementById('desc-ko').classList.toggle('visible', lang === 'ko');
+        document.getElementById('desc-en').classList.toggle('visible', lang === 'en');
+      });
+    });
+
     // ── Nav scroll ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
