@@ -6,11 +6,7 @@
   <title>Raindrop — Warygary Studio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --black: #111111;
@@ -22,7 +18,7 @@
 
     body {
       font-family: var(--font);
-      background-color: var(--white);
+      background: var(--white);
       color: var(--black);
       font-size: 14px;
       line-height: 1.6;
@@ -32,235 +28,91 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 28px 48px;
-      background-color: var(--white);
+      background: var(--white);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
+    nav.scrolled { border-color: var(--gray-light); }
+    .nav-logo { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--black); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 13px; text-decoration: none; color: var(--black); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gray-mid); }
 
-    nav.scrolled {
-      border-color: var(--gray-light);
+    /* ── PAGE WRAPPER ── */
+    .page {
+      padding-top: 100px;
     }
 
-    .nav-logo {
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      color: var(--black);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      text-decoration: none;
-      color: var(--black);
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gray-mid);
-    }
-
-    /* ── WORK HEADER ── */
-    .work-header {
-      padding: 140px 48px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .work-header-left {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .work-number {
-      font-size: 11px;
-      color: var(--gray-mid);
-    }
-
-    .work-title {
-      font-size: clamp(28px, 4vw, 52px);
-      font-weight: 400;
-    }
-
-    .work-subtitle {
-      font-size: 13px;
-      color: var(--gray-mid);
-      margin-top: 4px;
-    }
-
-    .back-link {
-      font-size: 12px;
-      text-decoration: none;
-      color: var(--gray-mid);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-      padding-bottom: 6px;
-    }
-
-    .back-link:hover {
-      color: var(--black);
-    }
-
-    /* ── GALLERY ── */
-    .gallery {
+    /* ── TOP SECTION: Main image + Info ── */
+    .top-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      gap: 2px;
-      background-color: var(--gray-light);
-      margin-top: 2px;
+      gap: 0;
+      min-height: 80vh;
     }
 
-    .gallery-item {
+    .main-image-box {
+      background: var(--gray-light);
       overflow: hidden;
-      background-color: var(--gray-light);
       position: relative;
     }
-
-    .gallery-item img {
+    .main-image-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.7s ease;
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.02);
-    }
-
-    /* Image 01: spans full width */
-    .gallery-item.hero {
-      grid-column: 1 / -1;
-      aspect-ratio: 16 / 9;
-    }
-
-    /* Images 02 & 03 */
-    .gallery-item.portrait {
-      aspect-ratio: 3 / 4;
-    }
-
-    /* Images 04 & 05 */
-    .gallery-item.landscape {
-      aspect-ratio: 4 / 3;
-    }
-
-    /* ── CONTENT ── */
-    .work-content {
-      padding: 80px 48px 60px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      border-top: 1px solid var(--black);
-    }
-
-    .desc-section {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .desc-block {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .desc-lang {
-      font-size: 10px;
-      color: var(--gray-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .desc-text {
-      font-size: 13px;
-      line-height: 1.95;
-      color: #333;
-      word-break: keep-all;
-    }
-
-    /* ── PURCHASE ── */
-    .purchase-section {
+    /* ── PRODUCT INFO (right column) ── */
+    .product-info {
+      padding: 48px 48px 48px 56px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      border-left: 1px solid var(--gray-light);
     }
 
-    .purchase-top {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
+    .info-top { display: flex; flex-direction: column; gap: 32px; }
+
+    .product-name-block { display: flex; flex-direction: column; gap: 6px; }
+    .product-name {
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 500;
+    }
+    .product-type {
+      font-size: 14px;
+      color: var(--gray-mid);
     }
 
-    .product-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--gray-light);
-    }
-
+    .meta-table { display: flex; flex-direction: column; gap: 10px; }
     .meta-row {
       display: flex;
       justify-content: space-between;
       font-size: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gray-light);
     }
+    .meta-row:last-child { border-bottom: none; }
+    .meta-key { color: var(--gray-mid); }
+    .meta-val { color: var(--black); }
 
-    .meta-key {
-      color: var(--gray-mid);
-    }
+    .price-block { display: flex; flex-direction: column; gap: 4px; }
+    .price-label { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.06em; }
+    .price-krw { font-size: clamp(22px, 2.5vw, 34px); font-weight: 400; }
+    .price-usd { font-size: 13px; color: var(--gray-mid); }
 
-    .meta-val {
-      color: var(--black);
-    }
-
-    .price-block {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .price-label {
-      font-size: 10px;
-      color: var(--gray-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .price-krw {
-      font-size: clamp(24px, 2.5vw, 36px);
-      font-weight: 400;
-    }
-
-    .price-usd {
-      font-size: 13px;
-      color: var(--gray-mid);
-      margin-top: 2px;
-    }
-
+    .btn-group { display: flex; flex-direction: column; gap: 8px; }
     .btn-purchase {
       display: block;
       width: 100%;
-      padding: 18px 24px;
-      background-color: var(--black);
+      padding: 17px 24px;
+      background: var(--black);
       color: var(--white);
       font-family: var(--font);
       font-size: 13px;
@@ -269,20 +121,15 @@
       text-align: center;
       border: none;
       cursor: pointer;
-      transition: background-color 0.25s;
-      margin-top: 40px;
       text-decoration: none;
+      transition: background 0.25s;
     }
-
-    .btn-purchase:hover {
-      background-color: #333;
-    }
-
+    .btn-purchase:hover { background: #333; }
     .btn-inquiry {
       display: block;
       width: 100%;
-      padding: 16px 24px;
-      background-color: transparent;
+      padding: 15px 24px;
+      background: transparent;
       color: var(--black);
       font-family: var(--font);
       font-size: 12px;
@@ -290,62 +137,138 @@
       text-align: center;
       border: 1px solid var(--gray-light);
       cursor: pointer;
-      transition: border-color 0.25s;
-      margin-top: 8px;
       text-decoration: none;
+      transition: border-color 0.25s;
+    }
+    .btn-inquiry:hover { border-color: var(--black); }
+
+    /* ── CAROUSEL SECTION ── */
+    .carousel-section {
+      position: relative;
+      background: var(--gray-light);
+      overflow: hidden;
+      border-top: 1px solid var(--gray-light);
     }
 
-    .btn-inquiry:hover {
-      border-color: var(--black);
+    .carousel-track-wrap {
+      overflow: hidden;
     }
 
-    /* ── FOOTER ── */
-    .work-footer {
-      padding: 40px 48px;
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--gray-light);
+      flex-shrink: 0;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Arrows */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 16px;
+      color: var(--black);
+      font-size: 22px;
+      line-height: 1;
+      z-index: 10;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .carousel-btn:hover { opacity: 1; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+
+    /* Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px 0;
+      background: var(--white);
+      border-top: 1px solid var(--gray-light);
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gray-light);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .dot.active { background: var(--black); }
+
+    /* ── DESCRIPTION SECTION ── */
+    .desc-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      padding: 72px 48px 80px;
+      border-top: 1px solid var(--black);
+    }
+
+    .desc-block { display: flex; flex-direction: column; gap: 14px; }
+    .desc-lang {
+      font-size: 10px;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .desc-text {
+      font-size: 13px;
+      line-height: 1.95;
+      color: #333;
+      word-break: keep-all;
+    }
+
+    /* ── BACK NAV ── */
+    .back-bar {
+      padding: 24px 48px;
       border-top: 1px solid var(--gray-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
-    .footer-nav {
-      display: flex;
-      gap: 24px;
-    }
-
-    .footer-nav a {
+    .back-link {
       font-size: 12px;
       color: var(--gray-mid);
       text-decoration: none;
       transition: color 0.2s;
     }
-
-    .footer-nav a:hover {
-      color: var(--black);
-    }
-
-    .footer-copy {
-      font-size: 11px;
-      color: var(--gray-mid);
-    }
+    .back-link:hover { color: var(--black); }
+    .copy { font-size: 11px; color: var(--gray-mid); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 22px 24px; }
-      .work-header { padding: 120px 24px 32px; }
-      .work-content { padding: 60px 24px; grid-template-columns: 1fr; gap: 48px; }
-      .gallery-item.hero { aspect-ratio: 4 / 3; }
-      .work-footer { padding: 32px 24px; }
+      .top-section { grid-template-columns: 1fr; }
+      .main-image-box { aspect-ratio: 4 / 3; }
+      .product-info { padding: 40px 24px; border-left: none; border-top: 1px solid var(--gray-light); }
+      .desc-section { grid-template-columns: 1fr; gap: 40px; padding: 56px 24px 64px; }
+      .back-bar { padding: 24px; }
     }
 
     @media (max-width: 600px) {
       nav { padding: 18px 20px; }
       .nav-links { gap: 20px; }
-      .work-header { padding: 100px 20px 24px; }
-      .work-content { padding: 48px 20px; }
-      .gallery { grid-template-columns: 1fr; }
-      .gallery-item.hero { aspect-ratio: 3 / 4; }
-      .work-footer { padding: 28px 20px; flex-direction: column; gap: 16px; }
+      .product-info { padding: 32px 20px; }
+      .desc-section { padding: 48px 20px 56px; }
+      .back-bar { padding: 20px; }
     }
   </style>
 </head>
@@ -361,42 +284,78 @@
     </ul>
   </nav>
 
-  <!-- WORK HEADER -->
-  <div class="work-header">
-    <div class="work-header-left">
-      <span class="work-number">01 / 06</span>
-      <h1 class="work-title">Raindrop</h1>
-      <p class="work-subtitle">Umbrella Stand</p>
-    </div>
-    <a href="index.html#works" class="back-link">← Back to Works</a>
-  </div>
+  <div class="page">
 
-  <!-- GALLERY: 5 images -->
-  <div class="gallery">
-    <!-- 01: Hero full-width -->
-    <div class="gallery-item hero">
-      <img src="images/works/01/main.jpg" alt="Raindrop — Main" />
-    </div>
-    <!-- 02 & 03: Portrait pair -->
-    <div class="gallery-item portrait">
-      <img src="images/works/01/02.jpg" alt="Raindrop — 02" />
-    </div>
-    <div class="gallery-item portrait">
-      <img src="images/works/01/03.jpg" alt="Raindrop — 03" />
-    </div>
-    <!-- 04 & 05: Landscape pair -->
-    <div class="gallery-item landscape">
-      <img src="images/works/01/04.jpg" alt="Raindrop — 04" />
-    </div>
-    <div class="gallery-item landscape">
-      <img src="images/works/01/05.jpg" alt="Raindrop — 05" />
-    </div>
-  </div>
+    <!-- TOP: Main image + Product info -->
+    <div class="top-section">
+      <div class="main-image-box">
+        <img src="images/works/01/main.jpg" alt="Raindrop — Main" />
+      </div>
 
-  <!-- CONTENT: Description + Purchase -->
-  <div class="work-content">
+      <div class="product-info">
+        <div class="info-top">
+          <div class="product-name-block">
+            <h1 class="product-name">Raindrop</h1>
+            <p class="product-type">Umbrella Stand</p>
+          </div>
 
-    <!-- LEFT: Description KO + EN -->
+          <div class="meta-table">
+            <div class="meta-row">
+              <span class="meta-key">Product</span>
+              <span class="meta-val">Raindrop — Umbrella Stand</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Designer</span>
+              <span class="meta-val">Warygary Studio</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Material</span>
+              <span class="meta-val">none</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-key">Year</span>
+              <span class="meta-val">none</span>
+            </div>
+          </div>
+
+          <div class="price-block">
+            <span class="price-label">Price</span>
+            <span class="price-krw">₩1,200,000</span>
+            <span class="price-usd">$900 USD</span>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
+          <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAROUSEL: images 02 ~ 05 -->
+    <div class="carousel-section">
+      <button class="carousel-btn prev" aria-label="이전">&#8249;</button>
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="track">
+          <div class="carousel-slide">
+            <img src="images/works/01/02.jpg" alt="Raindrop — 02" />
+          </div>
+          <div class="carousel-slide">
+            <img src="images/works/01/03.jpg" alt="Raindrop — 03" />
+          </div>
+          <div class="carousel-slide">
+            <img src="images/works/01/04.jpg" alt="Raindrop — 04" />
+          </div>
+          <div class="carousel-slide">
+            <img src="images/works/01/05.jpg" alt="Raindrop — 05" />
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn next" aria-label="다음">&#8250;</button>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+
+    <!-- DESCRIPTION -->
     <div class="desc-section">
       <div class="desc-block">
         <span class="desc-lang">한국어</span>
@@ -408,55 +367,52 @@
       </div>
     </div>
 
-    <!-- RIGHT: Purchase -->
-    <div class="purchase-section">
-      <div class="purchase-top">
-        <div class="product-meta">
-          <div class="meta-row">
-            <span class="meta-key">Product</span>
-            <span class="meta-val">Raindrop — Umbrella Stand</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-key">Designer</span>
-            <span class="meta-val">Warygary Studio</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-key">Material</span>
-            <span class="meta-val">none</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-key">Year</span>
-            <span class="meta-val">none</span>
-          </div>
-        </div>
-
-        <div class="price-block">
-          <span class="price-label">Price</span>
-          <span class="price-krw">₩1,200,000</span>
-          <span class="price-usd">$900 USD</span>
-        </div>
-      </div>
-
-      <div>
-        <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
-        <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
-      </div>
+    <!-- BACK -->
+    <div class="back-bar">
+      <a href="index.html#works" class="back-link">← All Works</a>
+      <span class="copy">© 2024 Warygary Studio</span>
     </div>
 
-  </div>
-
-  <!-- FOOTER -->
-  <div class="work-footer">
-    <div class="footer-nav">
-      <a href="index.html#works">← All Works</a>
-    </div>
-    <span class="footer-copy">© 2024 Warygary Studio</span>
   </div>
 
   <script>
+    // Nav scroll
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Carousel
+    const track = document.getElementById('track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsWrap = document.getElementById('dots');
+    let current = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dotsWrap.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    document.querySelector('.carousel-btn.prev').addEventListener('click', () => goTo(current - 1));
+    document.querySelector('.carousel-btn.next').addEventListener('click', () => goTo(current + 1));
+
+    // Swipe support
+    let startX = 0;
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    track.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
     });
   </script>
 
