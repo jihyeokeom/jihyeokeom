@@ -86,6 +86,10 @@
       padding-bottom: 80px;
       padding-left: 48px;
       padding-right: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
     }
 
     .hero-label {
@@ -101,7 +105,6 @@
       font-weight: 400;
       line-height: 1.1;
       letter-spacing: -0.03em;
-      max-width: 700px;
     }
 
     .hero-title em {
@@ -110,7 +113,6 @@
 
     .hero-desc {
       margin-top: 48px;
-      max-width: 560px;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -130,6 +132,56 @@
 
     .hero-desc .desc-en {
       font-size: 11.5px;
+    }
+
+    /* ── HERO SLIDESHOW ── */
+    .hero-slideshow {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background-color: var(--gray-light);
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-slide-dots {
+      position: absolute;
+      bottom: 14px;
+      right: 16px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+
+    .hero-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+
+    .hero-dot.active {
+      background: #fff;
     }
 
     /* ── SECTION BASE ── */
@@ -342,7 +394,13 @@
         padding: 22px 24px;
       }
 
-      #home,
+      #home {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
       section {
         padding-left: 24px;
         padding-right: 24px;
@@ -392,11 +450,23 @@
 
   <!-- HERO -->
   <div id="home">
-    <p class="hero-label">Industrial Design Studio</p>
-    <h1 class="hero-title">We design experiences<br>beyond boundaries.</h1>
-    <div class="hero-desc">
-      <p class="desc-ko">와리가리 스튜디오는 특정한 장소에 얽매이지 않고, 언제 어디서나 경험할 수 있는 이동형 전시의 가능성에 주목합니다. 우리는 일상 속 평범한 요소들에 집중하며, 이를 직관적이고 감성적인 어포던스 기반의 디자인 방법론으로 풀어내고자 합니다. 나아가, 이러한 디자인이 오늘날 왜 필요한지 그 이유와 가치를 증명하고자 합니다.</p>
-      <p class="desc-en">Warigari Studio explores portable exhibition experiences that transcend the limitations of place, enabling engagement anytime and anywhere. Focusing on the ordinary moments of everyday life, we create intuitive and emotional experiences through an affordance-driven design approach, while exploring why such design is needed in today's society.</p>
+    <div class="hero-content">
+      <p class="hero-label">Industrial Design Studio</p>
+      <h1 class="hero-title">We design experiences<br>beyond boundaries.</h1>
+      <div class="hero-desc">
+        <p class="desc-ko">와리가리 스튜디오는 특정한 장소에 얽매이지 않고, 언제 어디서나 경험할 수 있는 이동형 전시의 가능성에 주목합니다. 우리는 일상 속 평범한 요소들에 집중하며, 이를 직관적이고 감성적인 어포던스 기반의 디자인 방법론으로 풀어내고자 합니다. 나아가, 이러한 디자인이 오늘날 왜 필요한지 그 이유와 가치를 증명하고자 합니다.</p>
+        <p class="desc-en">Warigari Studio explores portable exhibition experiences that transcend the limitations of place, enabling engagement anytime and anywhere. Focusing on the ordinary moments of everyday life, we create intuitive and emotional experiences through an affordance-driven design approach, while exploring why such design is needed in today's society.</p>
+      </div>
+    </div>
+
+    <div class="hero-slideshow" id="heroSlideshow">
+      <div class="hero-slide active">
+        <img src="images/hero_01.jpg" alt="Warygary Studio" />
+      </div>
+      <div class="hero-slide">
+        <img src="images/hero_02.jpg" alt="Warygary Studio" />
+      </div>
+      <div class="hero-slide-dots" id="heroDots"></div>
     </div>
   </div>
 
@@ -521,6 +591,28 @@
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
     });
+
+    // Hero slideshow
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots   = document.getElementById('heroDots');
+    let heroCurrent  = 0;
+
+    heroSlides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => heroGoTo(i));
+      heroDots.appendChild(dot);
+    });
+
+    function heroGoTo(index) {
+      heroSlides[heroCurrent].classList.remove('active');
+      heroDots.querySelectorAll('.hero-dot')[heroCurrent].classList.remove('active');
+      heroCurrent = index % heroSlides.length;
+      heroSlides[heroCurrent].classList.add('active');
+      heroDots.querySelectorAll('.hero-dot')[heroCurrent].classList.add('active');
+    }
+
+    setInterval(() => heroGoTo(heroCurrent + 1), 5000);
 
     // Active nav link highlight
     const sections = document.querySelectorAll('section[id], div[id]');
