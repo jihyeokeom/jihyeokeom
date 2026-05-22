@@ -49,15 +49,16 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding: 0 48px;
-      height: calc(100vh - 100px);
+      align-items: start;
     }
 
     .main-image-box {
       background: var(--gray-light);
       overflow: hidden;
       position: relative;
-      height: 100%;
-      min-height: 0;
+      aspect-ratio: 3 / 4;
+      max-height: 82vh;
+      width: 100%;
     }
     .main-image-box img {
       width: 100%; height: 100%;
@@ -69,7 +70,7 @@
       padding: 48px 0 48px 56px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 32px;
       border-left: 1px solid var(--gray-light);
     }
 
@@ -116,7 +117,7 @@
     }
     .info-desc-text.visible { display: block; }
 
-    .btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: 40px; }
+    .btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: 56px; }
     .btn-purchase {
       display: block; width: 100%; padding: 17px 24px;
       background: var(--black); color: var(--white);
@@ -141,7 +142,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 2px;
       padding: 0 48px;
-      margin-top: 40px;
+      margin-top: 80px;
     }
     .card-item {
       background: var(--gray-light);
