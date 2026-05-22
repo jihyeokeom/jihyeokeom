@@ -53,14 +53,16 @@
     .top-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
+      padding: 0 48px;
+      height: calc(100vh - 100px);
     }
 
     .main-image-box {
       background: var(--gray-light);
       overflow: hidden;
       position: relative;
-      aspect-ratio: 3 / 4;
+      height: 100%;
+      min-height: 0;
     }
     .main-image-box img {
       width: 100%;
@@ -71,14 +73,16 @@
 
     /* ── PRODUCT INFO (right column) ── */
     .product-info {
-      padding: 48px 48px 48px 56px;
+      padding: 48px 0 48px 56px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       border-left: 1px solid var(--gray-light);
+      overflow-y: auto;
+      min-height: 0;
     }
 
-    .info-top { display: flex; flex-direction: column; gap: 32px; }
+    .info-top { display: flex; flex-direction: column; gap: 28px; }
 
     .product-name-block { display: flex; flex-direction: column; gap: 6px; }
     .product-name {
@@ -183,76 +187,34 @@
     }
     .btn-inquiry:hover { border-color: var(--black); }
 
-    /* ── CAROUSEL SECTION ── */
-    .carousel-section {
+    /* ── CARDS SECTION ── */
+    .cards-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      padding: 0 48px;
+      margin-top: 2px;
+    }
+
+    .card-item {
+      background: var(--gray-light);
+      overflow: hidden;
       position: relative;
-      background: var(--gray-light);
-      overflow: hidden;
-      margin-top: 48px;
-    }
-
-    .carousel-track-wrap {
-      overflow: hidden;
-    }
-
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .carousel-slide {
-      min-width: 100%;
       aspect-ratio: 3 / 4;
-      background: var(--gray-light);
-      flex-shrink: 0;
+      cursor: zoom-in;
     }
-    .carousel-slide img {
+
+    .card-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.5s ease;
     }
 
-    /* Arrows */
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 16px;
-      color: var(--black);
-      font-size: 22px;
-      line-height: 1;
-      z-index: 10;
-      opacity: 0.5;
-      transition: opacity 0.2s;
+    .card-item:hover img {
+      transform: scale(1.03);
     }
-    .carousel-btn:hover { opacity: 1; }
-    .carousel-btn.prev { left: 12px; }
-    .carousel-btn.next { right: 12px; }
-
-    /* Dots */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 20px 0;
-      background: var(--white);
-      border-top: 1px solid var(--gray-light);
-    }
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--gray-light);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.2s;
-    }
-    .dot.active { background: var(--black); }
 
     /* ── DESCRIPTION SECTION ── */
     .desc-section {
@@ -387,17 +349,17 @@
     }
 
     /* Clickable images */
-    .main-image-box img,
-    .carousel-slide img {
+    .main-image-box img {
       cursor: zoom-in;
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 22px 24px; }
-      .top-section { grid-template-columns: 1fr; }
-      .main-image-box { aspect-ratio: 4 / 3; }
-      .product-info { padding: 40px 24px; border-left: none; border-top: 1px solid var(--gray-light); }
+      .top-section { grid-template-columns: 1fr; padding: 0 24px; height: auto; }
+      .main-image-box { height: auto; aspect-ratio: 4 / 3; }
+      .product-info { padding: 40px 0 40px 0; border-left: none; border-top: 1px solid var(--gray-light); }
+      .cards-section { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
       .desc-section { grid-template-columns: 1fr; gap: 40px; padding: 56px 24px 64px; }
       .back-bar { padding: 24px; }
     }
@@ -405,7 +367,9 @@
     @media (max-width: 600px) {
       nav { padding: 18px 20px; }
       .nav-links { gap: 20px; }
-      .product-info { padding: 32px 20px; }
+      .top-section { padding: 0 20px; }
+      .product-info { padding: 32px 0 32px 0; }
+      .cards-section { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
       .desc-section { padding: 48px 20px 56px; }
       .back-bar { padding: 20px; }
     }
@@ -480,28 +444,21 @@
       </div>
     </div>
 
-    <!-- CAROUSEL: images 02 ~ 05 -->
-    <div class="carousel-section">
-      <button class="carousel-btn prev" aria-label="이전">&#8249;</button>
-      <div class="carousel-track-wrap">
-        <div class="carousel-track" id="track">
-          <div class="carousel-slide">
-            <img src="images/works/01/02.jpg" alt="Raindrop — 02" />
-          </div>
-          <div class="carousel-slide">
-            <img src="images/works/01/03.jpg" alt="Raindrop — 03" />
-          </div>
-          <div class="carousel-slide">
-            <img src="images/works/01/04.jpg" alt="Raindrop — 04" />
-          </div>
-          <div class="carousel-slide">
-            <img src="images/works/01/05.jpg" alt="Raindrop — 05" />
-          </div>
-        </div>
+    <!-- CARDS: images 02 ~ 05 -->
+    <div class="cards-section">
+      <div class="card-item">
+        <img src="images/works/01/02.jpg" alt="Raindrop — 02" />
       </div>
-      <button class="carousel-btn next" aria-label="다음">&#8250;</button>
+      <div class="card-item">
+        <img src="images/works/01/03.jpg" alt="Raindrop — 03" />
+      </div>
+      <div class="card-item">
+        <img src="images/works/01/04.jpg" alt="Raindrop — 04" />
+      </div>
+      <div class="card-item">
+        <img src="images/works/01/05.jpg" alt="Raindrop — 05" />
+      </div>
     </div>
-    <div class="carousel-dots" id="dots"></div>
 
     <!-- DESCRIPTION -->
     <div class="desc-section">
@@ -552,7 +509,7 @@
       navbar.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // ── All images (main + carousel 02~05) ──
+    // ── All images (main + cards 02~05) ──
     const allSrcs = [
       'images/works/01/main.jpg',
       'images/works/01/02.jpg',
@@ -562,45 +519,13 @@
     ];
     const total = allSrcs.length;
 
-    // ── Carousel ──
-    const track   = document.getElementById('track');
-    const slides  = track.querySelectorAll('.carousel-slide');
-    const dotsWrap = document.getElementById('dots');
-    let carCurrent = 0;
-
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => carGoTo(i));
-      dotsWrap.appendChild(dot);
-    });
-
-    function carGoTo(index) {
-      carCurrent = (index + slides.length) % slides.length;
-      track.style.transform = `translateX(-${carCurrent * 100}%)`;
-      dotsWrap.querySelectorAll('.dot').forEach((d, i) => {
-        d.classList.toggle('active', i === carCurrent);
-      });
-    }
-
-    document.querySelector('.carousel-btn.prev').addEventListener('click', () => carGoTo(carCurrent - 1));
-    document.querySelector('.carousel-btn.next').addEventListener('click', () => carGoTo(carCurrent + 1));
-
-    let carStartX = 0;
-    track.addEventListener('touchstart', e => { carStartX = e.touches[0].clientX; });
-    track.addEventListener('touchend', e => {
-      const diff = carStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) carGoTo(carCurrent + (diff > 0 ? 1 : -1));
-    });
-
     // ── Lightbox ──
-    const lb       = document.getElementById('lb');
-    const lbImg    = document.getElementById('lb-img');
-    const lbDots   = document.getElementById('lb-dots');
+    const lb        = document.getElementById('lb');
+    const lbImg     = document.getElementById('lb-img');
+    const lbDots    = document.getElementById('lb-dots');
     const lbCounter = document.getElementById('lb-counter');
-    let lbCurrent  = 0;
+    let lbCurrent   = 0;
 
-    // Build lightbox dots
     allSrcs.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
@@ -632,19 +557,17 @@
     document.querySelector('.main-image-box img')
       .addEventListener('click', () => lbOpen(0));
 
-    // Carousel slide clicks → index 1~4
-    slides.forEach((slide, i) => {
-      slide.querySelector('img').addEventListener('click', () => lbOpen(i + 1));
+    // Card clicks → index 1~4
+    document.querySelectorAll('.card-item').forEach((card, i) => {
+      card.addEventListener('click', () => lbOpen(i + 1));
     });
 
     document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent - 1); });
     document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent + 1); });
     document.getElementById('lb-close').addEventListener('click', lbClose);
 
-    // Click outside image to close
     lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
 
-    // Keyboard
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return;
       if (e.key === 'ArrowLeft')  lbGoTo(lbCurrent - 1);
@@ -652,7 +575,6 @@
       if (e.key === 'Escape')     lbClose();
     });
 
-    // Touch swipe in lightbox
     let lbStartX = 0;
     lb.addEventListener('touchstart', e => { lbStartX = e.touches[0].clientX; });
     lb.addEventListener('touchend', e => {
