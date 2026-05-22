@@ -25,7 +25,6 @@
       letter-spacing: -0.03em;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -44,12 +43,8 @@
     .nav-links a { font-size: 13px; text-decoration: none; color: var(--black); transition: color 0.2s; }
     .nav-links a:hover { color: var(--gray-mid); }
 
-    /* ── PAGE WRAPPER ── */
-    .page {
-      padding-top: 100px;
-    }
+    .page { padding-top: 100px; }
 
-    /* ── TOP SECTION: Main image + Info ── */
     .top-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -65,13 +60,11 @@
       min-height: 0;
     }
     .main-image-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      cursor: zoom-in;
     }
 
-    /* ── PRODUCT INFO (right column) ── */
     .product-info {
       padding: 48px 0 48px 56px;
       display: flex;
@@ -83,16 +76,9 @@
     }
 
     .info-top { display: flex; flex-direction: column; gap: 28px; }
-
     .product-name-block { display: flex; flex-direction: column; gap: 6px; }
-    .product-name {
-      font-size: clamp(28px, 3vw, 42px);
-      font-weight: 500;
-    }
-    .product-type {
-      font-size: 14px;
-      color: var(--gray-mid);
-    }
+    .product-name { font-size: clamp(28px, 3vw, 42px); font-weight: 500; }
+    .product-type { font-size: 14px; color: var(--gray-mid); }
 
     .meta-table { display: flex; flex-direction: column; gap: 10px; }
     .meta-row {
@@ -111,83 +97,47 @@
     .price-krw { font-size: clamp(22px, 2.5vw, 34px); font-weight: 400; }
     .price-usd { font-size: 13px; color: var(--gray-mid); }
 
-    /* ── DESC IN INFO ── */
-    .info-desc-block {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
+    .info-desc-block { display: flex; flex-direction: column; gap: 10px; }
     .lang-toggle {
-      display: flex;
-      gap: 0;
+      display: flex; gap: 0;
       border: 1px solid var(--gray-light);
       width: fit-content;
     }
-
     .lang-btn {
       padding: 5px 14px;
-      font-family: var(--font);
-      font-size: 11px;
+      font-family: var(--font); font-size: 11px;
       letter-spacing: -0.03em;
-      background: none;
-      border: none;
-      cursor: pointer;
+      background: none; border: none; cursor: pointer;
       color: var(--gray-mid);
       transition: background 0.2s, color 0.2s;
     }
-
-    .lang-btn.active {
-      background: var(--black);
-      color: var(--white);
-    }
-
+    .lang-btn.active { background: var(--black); color: var(--white); }
     .info-desc-text {
-      font-size: 12px;
-      line-height: 1.9;
-      color: #555;
-      word-break: keep-all;
-      display: none;
+      font-size: 12px; line-height: 1.9; color: #555;
+      word-break: keep-all; display: none;
     }
-
     .info-desc-text.visible { display: block; }
 
     .btn-group { display: flex; flex-direction: column; gap: 8px; }
     .btn-purchase {
-      display: block;
-      width: 100%;
-      padding: 17px 24px;
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
+      display: block; width: 100%; padding: 17px 24px;
+      background: var(--black); color: var(--white);
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      letter-spacing: -0.03em; text-align: center;
+      border: none; cursor: pointer; text-decoration: none;
       transition: background 0.25s;
     }
     .btn-purchase:hover { background: #333; }
     .btn-inquiry {
-      display: block;
-      width: 100%;
-      padding: 15px 24px;
-      background: transparent;
-      color: var(--black);
-      font-family: var(--font);
-      font-size: 12px;
-      letter-spacing: -0.03em;
-      text-align: center;
-      border: 1px solid var(--gray-light);
-      cursor: pointer;
-      text-decoration: none;
+      display: block; width: 100%; padding: 15px 24px;
+      background: transparent; color: var(--black);
+      font-family: var(--font); font-size: 12px;
+      letter-spacing: -0.03em; text-align: center;
+      border: 1px solid var(--gray-light); cursor: pointer; text-decoration: none;
       transition: border-color 0.25s;
     }
     .btn-inquiry:hover { border-color: var(--black); }
 
-    /* ── CARDS SECTION ── */
     .cards-section {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -195,180 +145,93 @@
       padding: 0 48px;
       margin-top: 2px;
     }
-
     .card-item {
       background: var(--gray-light);
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 3 / 4;
-      cursor: zoom-in;
+      overflow: hidden; position: relative;
+      aspect-ratio: 3 / 4; cursor: zoom-in;
     }
-
     .card-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
       transition: transform 0.5s ease;
     }
+    .card-item:hover img { transform: scale(1.03); }
 
-    .card-item:hover img {
-      transform: scale(1.03);
-    }
-
-    /* ── DESCRIPTION SECTION ── */
     .desc-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      padding: 72px 48px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; padding: 72px 48px 80px;
       border-top: 1px solid var(--black);
     }
-
     .desc-block { display: flex; flex-direction: column; gap: 14px; }
-    .desc-lang {
-      font-size: 10px;
-      color: var(--gray-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .desc-text {
-      font-size: 13px;
-      line-height: 1.95;
-      color: #333;
-      word-break: keep-all;
-    }
+    .desc-lang { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.06em; }
+    .desc-text { font-size: 13px; line-height: 1.95; color: #333; word-break: keep-all; }
 
-    /* ── BACK NAV ── */
     .back-bar {
       padding: 24px 48px;
       border-top: 1px solid var(--gray-light);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .back-link {
-      font-size: 12px;
-      color: var(--gray-mid);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .back-link { font-size: 12px; color: var(--gray-mid); text-decoration: none; transition: color 0.2s; }
     .back-link:hover { color: var(--black); }
     .copy { font-size: 11px; color: var(--gray-mid); }
 
-    /* ── LIGHTBOX ── */
     .lb-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.92);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.92);
+      flex-direction: column; align-items: center; justify-content: center;
     }
     .lb-overlay.open { display: flex; }
-
     .lb-img-wrap {
-      position: relative;
-      max-width: 90vw;
-      max-height: 82vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      max-width: 90vw; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
     }
     .lb-img-wrap img {
-      max-width: 90vw;
-      max-height: 82vh;
-      object-fit: contain;
-      display: block;
-      user-select: none;
+      max-width: 90vw; max-height: 82vh;
+      object-fit: contain; display: block; user-select: none;
     }
-
     .lb-btn {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 36px;
-      line-height: 1;
-      cursor: pointer;
-      padding: 20px;
-      opacity: 0.5;
-      transition: opacity 0.2s;
-      z-index: 1001;
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: #fff;
+      font-size: 36px; line-height: 1; cursor: pointer;
+      padding: 20px; opacity: 0.5; transition: opacity 0.2s; z-index: 1001;
     }
     .lb-btn:hover { opacity: 1; }
     .lb-btn.prev { left: 16px; }
     .lb-btn.next { right: 16px; }
-
     .lb-close {
-      position: fixed;
-      top: 20px;
-      right: 24px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-      opacity: 0.6;
-      transition: opacity 0.2s;
-      z-index: 1001;
+      position: fixed; top: 20px; right: 24px;
+      background: none; border: none; color: #fff;
+      font-size: 28px; line-height: 1; cursor: pointer;
+      opacity: 0.6; transition: opacity 0.2s; z-index: 1001;
     }
     .lb-close:hover { opacity: 1; }
-
-    .lb-dots {
-      display: flex;
-      gap: 8px;
-      margin-top: 20px;
-    }
+    .lb-dots { display: flex; gap: 8px; margin-top: 20px; }
     .lb-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.2s;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.3); border: none;
+      cursor: pointer; padding: 0; transition: background 0.2s;
     }
     .lb-dot.active { background: #fff; }
-
     .lb-counter {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.5);
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      z-index: 1001;
+      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.5); font-size: 12px;
+      letter-spacing: 0.06em; z-index: 1001;
     }
 
-    /* Clickable images */
-    .main-image-box img {
-      cursor: zoom-in;
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 22px 24px; }
       .top-section { grid-template-columns: 1fr; padding: 0 24px; height: auto; }
-      .main-image-box { height: auto; aspect-ratio: 4 / 3; }
-      .product-info { padding: 40px 0 40px 0; border-left: none; border-top: 1px solid var(--gray-light); }
+      .main-image-box { height: auto; aspect-ratio: 4/3; }
+      .product-info { padding: 40px 0; border-left: none; border-top: 1px solid var(--gray-light); }
       .cards-section { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
       .desc-section { grid-template-columns: 1fr; gap: 40px; padding: 56px 24px 64px; }
       .back-bar { padding: 24px; }
     }
-
     @media (max-width: 600px) {
       nav { padding: 18px 20px; }
       .nav-links { gap: 20px; }
       .top-section { padding: 0 20px; }
-      .product-info { padding: 32px 0 32px 0; }
+      .product-info { padding: 32px 0; }
       .cards-section { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
       .desc-section { padding: 48px 20px 56px; }
       .back-bar { padding: 20px; }
@@ -377,7 +240,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="navbar">
     <a href="index.html" class="nav-logo">Warygary Studio</a>
     <ul class="nav-links">
@@ -389,19 +251,16 @@
 
   <div class="page">
 
-    <!-- TOP: Main image + Product info -->
     <div class="top-section">
       <div class="main-image-box">
-        <img src="images/works/01/main.jpg" alt="Raindrop — Main" />
+        <img src="images/works/raindrop_main.jpg" alt="Raindrop — Main" />
       </div>
-
       <div class="product-info">
         <div class="info-top">
           <div class="product-name-block">
             <h1 class="product-name">Raindrop</h1>
             <p class="product-type">Umbrella Stand</p>
           </div>
-
           <div class="meta-table">
             <div class="meta-row">
               <span class="meta-key">Product</span>
@@ -420,14 +279,12 @@
               <span class="meta-val">2025</span>
             </div>
           </div>
-
           <div class="price-block">
             <span class="price-label">Price</span>
             <span class="price-krw">₩1,200,000</span>
             <span class="price-usd">$900 USD</span>
           </div>
         </div>
-
         <div class="info-desc-block">
           <div class="lang-toggle">
             <button class="lang-btn active" data-lang="ko">KO</button>
@@ -436,7 +293,6 @@
           <p class="info-desc-text visible" id="desc-ko">전세계의 연평균 강수일은 약 100일에 달하며, 이때 버려지는 빗물의 양은 상당합니다. 빗물은 석회질이 없어 토양을 경화시키지 않고, 자연 그대로의 순수한 상태를 유지하는 친환경 자원입니다. 이를 활용해 1인 가구가 손쉽게 식물을 돌볼 수 있도록 하는 것이 프로젝트의 출발점이었습니다. RAINDROP은 실내에서도 자연과의 연결을 지속할 수 있도록 설계되었으며, 빗물의 흐름을 디자인 요소로 삼아 자연을 능동적으로 받아들이는 방식을 제안합니다.</p>
           <p class="info-desc-text" id="desc-en">The world experiences an average of 100 rainy days per year, yet a significant amount of rainwater goes to waste. Unlike tap water, rainwater is free of limestone — an eco-friendly resource that does not harden the soil. RAINDROP proposes a way to actively engage with nature in daily life, utilizing the flow of rainwater as a design element to help single-person households care for plants more easily.</p>
         </div>
-
         <div class="btn-group">
           <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
           <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
@@ -444,23 +300,21 @@
       </div>
     </div>
 
-    <!-- CARDS: images 02 ~ 05 -->
     <div class="cards-section">
       <div class="card-item">
-        <img src="images/works/01/02.jpg" alt="Raindrop — 02" />
+        <img src="images/works/raindrop_01.jpg" alt="Raindrop — 01" />
       </div>
       <div class="card-item">
-        <img src="images/works/01/03.jpg" alt="Raindrop — 03" />
+        <img src="images/works/raindrop_02.jpg" alt="Raindrop — 02" />
       </div>
       <div class="card-item">
-        <img src="images/works/01/04.jpg" alt="Raindrop — 04" />
+        <img src="images/works/raindrop_03.jpg" alt="Raindrop — 03" />
       </div>
       <div class="card-item">
-        <img src="images/works/01/05.jpg" alt="Raindrop — 05" />
+        <img src="images/works/raindrop_04.jpg" alt="Raindrop — 04" />
       </div>
     </div>
 
-    <!-- DESCRIPTION -->
     <div class="desc-section">
       <div class="desc-block">
         <span class="desc-lang">한국어</span>
@@ -472,7 +326,6 @@
       </div>
     </div>
 
-    <!-- BACK -->
     <div class="back-bar">
       <a href="index.html#works" class="back-link">← All Works</a>
       <span class="copy">© 2024 Warygary Studio</span>
@@ -480,7 +333,6 @@
 
   </div>
 
-  <!-- LIGHTBOX -->
   <div class="lb-overlay" id="lb">
     <button class="lb-close" id="lb-close">&#215;</button>
     <span class="lb-counter" id="lb-counter"></span>
@@ -493,7 +345,6 @@
   </div>
 
   <script>
-    // ── Language toggle ──
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
@@ -503,23 +354,20 @@
       });
     });
 
-    // ── Nav scroll ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // ── All images (main + cards 02~05) ──
     const allSrcs = [
-      'images/works/01/main.jpg',
-      'images/works/01/02.jpg',
-      'images/works/01/03.jpg',
-      'images/works/01/04.jpg',
-      'images/works/01/05.jpg'
+      'images/works/raindrop_main.jpg',
+      'images/works/raindrop_01.jpg',
+      'images/works/raindrop_02.jpg',
+      'images/works/raindrop_03.jpg',
+      'images/works/raindrop_04.jpg'
     ];
     const total = allSrcs.length;
 
-    // ── Lightbox ──
     const lb        = document.getElementById('lb');
     const lbImg     = document.getElementById('lb-img');
     const lbDots    = document.getElementById('lb-dots');
@@ -553,11 +401,7 @@
       document.body.style.overflow = '';
     }
 
-    // Main image click → index 0
-    document.querySelector('.main-image-box img')
-      .addEventListener('click', () => lbOpen(0));
-
-    // Card clicks → index 1~4
+    document.querySelector('.main-image-box img').addEventListener('click', () => lbOpen(0));
     document.querySelectorAll('.card-item').forEach((card, i) => {
       card.addEventListener('click', () => lbOpen(i + 1));
     });
@@ -565,7 +409,6 @@
     document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent - 1); });
     document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent + 1); });
     document.getElementById('lb-close').addEventListener('click', lbClose);
-
     lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
 
     document.addEventListener('keydown', e => {
