@@ -388,6 +388,62 @@
       color: var(--gray-mid);
     }
 
+    /* ── ADMIN LOGIN BUTTON ── */
+    .nav-admin-btn {
+      font-family: var(--font);
+      font-size: 12px;
+      letter-spacing: -0.03em;
+      color: var(--gray-mid);
+      background: none;
+      border: 1px solid var(--gray-light);
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-left: 24px;
+    }
+    .nav-admin-btn:hover { color: var(--black); border-color: var(--black); }
+
+    /* ── ADMIN MODAL ── */
+    .admin-modal {
+      display: none;
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0, 0, 0, 0.35);
+      align-items: center; justify-content: center;
+    }
+    .admin-modal.open { display: flex; }
+    .admin-modal-box {
+      background: var(--white);
+      padding: 40px;
+      width: 300px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .admin-modal-title { font-size: 15px; font-weight: 600; }
+    .admin-modal-sub { font-size: 12px; color: var(--gray-mid); }
+    .admin-modal-box input[type="password"] {
+      width: 100%; padding: 11px 14px;
+      border: 1px solid var(--gray-light);
+      font-family: var(--font); font-size: 13px;
+      letter-spacing: -0.03em; outline: none;
+    }
+    .admin-modal-box input[type="password"]:focus { border-color: var(--black); }
+    .admin-modal-submit {
+      width: 100%; padding: 12px;
+      background: var(--black); color: var(--white);
+      border: none; font-family: var(--font);
+      font-size: 13px; letter-spacing: -0.03em; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .admin-modal-submit:hover { background: #333; }
+    .admin-modal-error { font-size: 12px; color: #cc3300; min-height: 16px; }
+    .admin-modal-cancel {
+      font-family: var(--font); font-size: 12px;
+      letter-spacing: -0.03em; color: var(--gray-mid);
+      background: none; border: none; cursor: pointer;
+      text-align: center; padding: 4px;
+      transition: color 0.2s;
+    }
+    .admin-modal-cancel:hover { color: var(--black); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav {
@@ -446,7 +502,21 @@
       <li><a href="#designer">Designer</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-admin-btn" onclick="openAdminModal()">관리자</button>
   </nav>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div class="admin-modal" id="adminModal">
+    <div class="admin-modal-box">
+      <p class="admin-modal-title">관리자 로그인</p>
+      <p class="admin-modal-sub">Warygary Studio Admin</p>
+      <input type="password" id="admin-pw" placeholder="비밀번호"
+             onkeydown="if(event.key==='Enter')submitAdminLogin()" />
+      <button class="admin-modal-submit" onclick="submitAdminLogin()">로그인</button>
+      <p class="admin-modal-error" id="admin-error"></p>
+      <button class="admin-modal-cancel" onclick="closeAdminModal()">취소</button>
+    </div>
+  </div>
 
   <!-- HERO -->
   <div id="home">
@@ -629,6 +699,29 @@
     }, { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' });
 
     document.querySelectorAll('#works, #designer, #contact').forEach(el => observer.observe(el));
+
+    // Admin modal
+    const ADMIN_PW = 'warygary2025';
+    function openAdminModal() {
+      document.getElementById('admin-pw').value = '';
+      document.getElementById('admin-error').textContent = '';
+      document.getElementById('adminModal').classList.add('open');
+      setTimeout(() => document.getElementById('admin-pw').focus(), 50);
+    }
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.remove('open');
+    }
+    function submitAdminLogin() {
+      if (document.getElementById('admin-pw').value === ADMIN_PW) {
+        sessionStorage.setItem('wg-admin', '1');
+        window.location.href = 'admin.html';
+      } else {
+        document.getElementById('admin-error').textContent = '비밀번호가 맞지 않습니다.';
+      }
+    }
+    document.getElementById('adminModal').addEventListener('click', function(e) {
+      if (e.target === this) closeAdminModal();
+    });
   </script>
 
 </body>
