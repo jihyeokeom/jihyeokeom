@@ -49,7 +49,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding: 0 48px;
-      align-items: stretch;
+      align-items: start;
     }
 
     .image-col {
@@ -60,7 +60,6 @@
     .info-col {
       display: flex;
       flex-direction: column;
-      border-left: 1px solid var(--gray-light);
     }
 
     .main-image-box {
@@ -134,7 +133,7 @@
       font-family: var(--font); font-size: 12px; font-weight: 500;
       letter-spacing: -0.03em; text-align: center;
       border: none; cursor: pointer; text-decoration: none;
-      margin-top: auto;
+      margin-top: 40px;
       transition: background 0.25s;
     }
     .btn-purchase:hover { background: #333; }
@@ -144,7 +143,7 @@
       font-family: var(--font); font-size: 12px;
       letter-spacing: -0.03em; text-align: center;
       border: 1px solid var(--gray-light);
-      margin-top: auto;
+      margin-top: 40px;
       cursor: pointer; text-decoration: none;
       transition: border-color 0.25s;
     }
@@ -268,7 +267,6 @@
         <div class="main-image-box">
           <img src="images/works/raindrop_main.jpg" alt="Raindrop — Main" />
         </div>
-        <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
       </div>
       <div class="info-col">
       <div class="product-info">
@@ -310,8 +308,9 @@
           <p class="info-desc-text" id="desc-en">The world experiences an average of 100 rainy days per year, yet a significant amount of rainwater goes to waste. Unlike tap water, rainwater is free of limestone — an eco-friendly resource that does not harden the soil. RAINDROP proposes a way to actively engage with nature in daily life, utilizing the flow of rainwater as a design element to help single-person households care for plants more easily.</p>
         </div>
       </div>
-        <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
       </div>
+      <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
+      <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
     </div>
 
     <div class="cards-section">

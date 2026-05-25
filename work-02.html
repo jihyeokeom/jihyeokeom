@@ -54,7 +54,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       padding: 0 48px;
-      align-items: stretch;
+      align-items: start;
     }
 
     .image-col {
@@ -65,7 +65,6 @@
     .info-col {
       display: flex;
       flex-direction: column;
-      border-left: 1px solid var(--gray-light);
     }
 
     .main-image-box {
@@ -168,7 +167,7 @@
       font-family: var(--font); font-size: 12px; font-weight: 500;
       letter-spacing: -0.03em; text-align: center;
       border: none; cursor: pointer; text-decoration: none;
-      margin-top: auto;
+      margin-top: 40px;
       transition: background 0.25s;
     }
     .btn-purchase:hover { background: #333; }
@@ -178,7 +177,7 @@
       font-family: var(--font); font-size: 12px;
       letter-spacing: -0.03em; text-align: center;
       border: 1px solid var(--gray-light);
-      margin-top: auto;
+      margin-top: 40px;
       cursor: pointer; text-decoration: none;
       transition: border-color 0.25s;
     }
@@ -392,7 +391,6 @@
         <div class="main-image-box">
           <img src="images/works/fluvo_main.jpg" alt="Fluvo — Main" />
         </div>
-        <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
       </div>
 
       <div class="info-col">
@@ -438,8 +436,9 @@
           <p class="info-desc-text" id="desc-en">Home is the first place where a child forms relationships, learns emotions, and practices society. As dual income families increase and parents hold different values, the balance of learning at home changes. Because of this shift, some children experience limited emotional interaction and fewer opportunities for social development. FLUVO was designed to reduce this gap. It is a robot for children aged five to ten, helping them understand emotions and build social awareness in life.</p>
         </div>
       </div>
-        <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
       </div>
+      <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
+      <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
     </div>
 
     <!-- CARDS: images 02 ~ 05 (gray placeholders) -->
