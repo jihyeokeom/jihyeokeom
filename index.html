@@ -330,7 +330,7 @@
       font-size: 18px;
       font-weight: 400;
       letter-spacing: -0.03em;
-      margin-bottom: 8px;
+      margin-bottom: 2px;
     }
 
     .designer-role {
@@ -358,7 +358,7 @@
     }
 
     .contact-email {
-      font-size: clamp(20px, 3.5vw, 42px);
+      font-size: clamp(14px, 1.8vw, 22px);
       font-weight: 400;
       letter-spacing: -0.03em;
       text-decoration: none;
@@ -413,7 +413,6 @@
       padding: 6px 14px;
       cursor: pointer;
       transition: color 0.2s, border-color 0.2s;
-      margin-left: 24px;
     }
     .nav-admin-btn:hover { color: var(--black); border-color: var(--black); }
 
@@ -516,7 +515,6 @@
       <li><a href="#designer">Designer</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-admin-btn" onclick="openAdminModal()">관리자</button>
   </nav>
 
   <!-- ADMIN LOGIN MODAL -->
@@ -692,12 +690,14 @@
 
     <div class="contact-body">
       <a href="mailto:shjh0325@naver.com" class="contact-email">shjh0325@naver.com</a>
-      <a href="mailto:info.limjunwoo@gmail.com" class="contact-email">info.limjunwoo@gmail.com</a>
     </div>
 
     <div class="contact-footer">
       <span class="contact-footer-left">Warygary Studio &mdash; Seoul, Korea</span>
-      <span class="contact-footer-right">&copy; 2024 Warygary Studio</span>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <button class="nav-admin-btn" onclick="openAdminModal()">관리자</button>
+        <span class="contact-footer-right">&copy; 2026 Warygary Studio</span>
+      </div>
     </div>
   </section>
 
