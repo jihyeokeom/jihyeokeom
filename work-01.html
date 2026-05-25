@@ -52,11 +52,16 @@
       align-items: start;
     }
 
+    .image-col {
+      display: flex;
+      flex-direction: column;
+    }
+
     .main-image-box {
       background: var(--gray-light);
       overflow: hidden;
       position: relative;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 1 / 1;
       max-height: 82vh;
       width: 100%;
     }
@@ -117,7 +122,7 @@
     }
     .info-desc-text.visible { display: block; }
 
-    .btn-group { display: flex; flex-direction: row; gap: 8px; margin-top: 32px; }
+    .btn-group { display: flex; flex-direction: row; gap: 2px; margin-top: 2px; }
     .btn-purchase {
       flex: 1; padding: 15px 16px;
       background: var(--black); color: var(--white);
@@ -251,8 +256,14 @@
   <div class="page">
 
     <div class="top-section">
-      <div class="main-image-box">
-        <img src="images/works/raindrop_main.jpg" alt="Raindrop — Main" />
+      <div class="image-col">
+        <div class="main-image-box">
+          <img src="images/works/raindrop_main.jpg" alt="Raindrop — Main" />
+        </div>
+        <div class="btn-group">
+          <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
+          <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
+        </div>
       </div>
       <div class="product-info">
         <div class="info-top">
@@ -291,10 +302,6 @@
           </div>
           <p class="info-desc-text visible" id="desc-ko">전세계의 연평균 강수일은 약 100일에 달하며, 이때 버려지는 빗물의 양은 상당합니다. 빗물은 석회질이 없어 토양을 경화시키지 않고, 자연 그대로의 순수한 상태를 유지하는 친환경 자원입니다. 이를 활용해 1인 가구가 손쉽게 식물을 돌볼 수 있도록 하는 것이 프로젝트의 출발점이었습니다. RAINDROP은 실내에서도 자연과의 연결을 지속할 수 있도록 설계되었으며, 빗물의 흐름을 디자인 요소로 삼아 자연을 능동적으로 받아들이는 방식을 제안합니다.</p>
           <p class="info-desc-text" id="desc-en">The world experiences an average of 100 rainy days per year, yet a significant amount of rainwater goes to waste. Unlike tap water, rainwater is free of limestone — an eco-friendly resource that does not harden the soil. RAINDROP proposes a way to actively engage with nature in daily life, utilizing the flow of rainwater as a design element to help single-person households care for plants more easily.</p>
-        </div>
-        <div class="btn-group">
-          <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
-          <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
         </div>
       </div>
     </div>
