@@ -74,14 +74,14 @@
 
     /* ── PRODUCT INFO (right column) ── */
     .product-info {
-      padding: 48px 0 48px 56px;
+      padding: 28px 0 28px 56px;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 20px;
       border-left: 1px solid var(--gray-light);
     }
 
-    .info-top { display: flex; flex-direction: column; gap: 28px; }
+    .info-top { display: flex; flex-direction: column; gap: 20px; }
 
     .product-name-block { display: flex; flex-direction: column; gap: 6px; }
     .product-name {
@@ -151,15 +151,14 @@
 
     .info-desc-text.visible { display: block; }
 
-    .btn-group { display: flex; flex-direction: column; gap: 8px; margin-top: 56px; }
+    .btn-group { display: flex; flex-direction: row; gap: 8px; margin-top: 32px; }
     .btn-purchase {
-      display: block;
-      width: 100%;
-      padding: 17px 24px;
+      flex: 1;
+      padding: 15px 16px;
       background: var(--black);
       color: var(--white);
       font-family: var(--font);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: -0.03em;
       text-align: center;
@@ -170,9 +169,8 @@
     }
     .btn-purchase:hover { background: #333; }
     .btn-inquiry {
-      display: block;
-      width: 100%;
-      padding: 15px 24px;
+      flex: 1;
+      padding: 15px 16px;
       background: transparent;
       color: var(--black);
       font-family: var(--font);
