@@ -62,6 +62,12 @@
       flex-direction: column;
     }
 
+    .info-col {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--gray-light);
+    }
+
     .main-image-box {
       background: var(--gray-light);
       overflow: hidden;
@@ -83,7 +89,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      border-left: 1px solid var(--gray-light);
+      flex: 1;
     }
 
     .info-top { display: flex; flex-direction: column; gap: 20px; }
@@ -156,38 +162,26 @@
 
     .info-desc-text.visible { display: block; }
 
-    .btn-group { display: flex; flex-direction: row; gap: 2px; margin-top: 2px; }
     .btn-purchase {
-      flex: 1;
-      padding: 15px 16px;
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
+      display: block; width: 100%; padding: 16px 24px;
+      background: var(--black); color: var(--white);
+      font-family: var(--font); font-size: 12px; font-weight: 500;
+      letter-spacing: -0.03em; text-align: center;
+      border: none; cursor: pointer; text-decoration: none;
+      margin-top: 2px;
       transition: background 0.25s;
     }
     .btn-purchase:hover { background: #333; }
     .btn-inquiry {
-      flex: 1;
-      padding: 15px 16px;
-      background: transparent;
-      color: var(--black);
-      font-family: var(--font);
-      font-size: 12px;
-      letter-spacing: -0.03em;
-      text-align: center;
-      border: 1px solid var(--gray-light);
-      cursor: pointer;
-      text-decoration: none;
-      transition: border-color 0.25s;
+      display: block; width: 100%; padding: 16px 24px;
+      background: transparent; color: var(--black);
+      font-family: var(--font); font-size: 12px;
+      letter-spacing: -0.03em; text-align: center;
+      border-top: 1px solid var(--gray-light);
+      cursor: pointer; text-decoration: none;
+      transition: color 0.25s, border-color 0.25s;
     }
-    .btn-inquiry:hover { border-color: var(--black); }
+    .btn-inquiry:hover { color: var(--gray-mid); }
 
     /* ── CARDS SECTION ── */
     .cards-section {
@@ -397,12 +391,10 @@
         <div class="main-image-box">
           <img src="images/works/fluvo_main.jpg" alt="Fluvo — Main" />
         </div>
-        <div class="btn-group">
-          <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
-          <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
-        </div>
+        <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
       </div>
 
+      <div class="info-col">
       <div class="product-info">
         <div class="info-top">
           <div class="product-name-block">
@@ -444,6 +436,8 @@
           <p class="info-desc-text visible" id="desc-ko">가정은 아이가 처음으로 관계를 맺고 감정을 배우며 사회를 연습하는 공간이다. 맞벌이 가정이 늘어나고 부모마다 서로 다른 가치관을 가지면서 가정 내 학습의 균형도 변화하고 있다. 이러한 변화로 일부 아이들은 충분한 정서적 교류와 사회성 발달의 기회를 경험하지 못하기도 한다. FLUVO는 이러한 간극을 줄이기 위해 설계되었다. 5세에서 10세 아이들을 위한 로봇으로, 일상 속에서 감정을 이해하고 사회적 인식을 기를 수 있도록 돕는다.</p>
           <p class="info-desc-text" id="desc-en">Home is the first place where a child forms relationships, learns emotions, and practices society. As dual income families increase and parents hold different values, the balance of learning at home changes. Because of this shift, some children experience limited emotional interaction and fewer opportunities for social development. FLUVO was designed to reduce this gap. It is a robot for children aged five to ten, helping them understand emotions and build social awareness in life.</p>
         </div>
+      </div>
+        <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
       </div>
     </div>
 
