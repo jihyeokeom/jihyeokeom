@@ -306,6 +306,15 @@
       width: 100%;
       aspect-ratio: 3 / 4;
       background-color: var(--gray-light);
+      overflow: hidden;
+    }
+
+    .designer-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
     }
 
     .designer-info {
@@ -614,13 +623,15 @@
   <section id="designer">
     <div class="section-header">
       <span class="section-title">Designer</span>
-      <span class="section-count">02 Members</span>
+      <span class="section-count">04 Members</span>
     </div>
 
     <div class="designer-grid">
 
       <div class="designer-item">
-        <div class="designer-image"></div>
+        <div class="designer-image">
+          <img src="images/designers/junwoo-lim.jpg" alt="Junwoo Lim" />
+        </div>
         <div class="designer-info">
           <p class="designer-name">Junwoo Lim</p>
           <p class="designer-role">Industrial Designer</p>
@@ -628,9 +639,29 @@
       </div>
 
       <div class="designer-item">
-        <div class="designer-image"></div>
+        <div class="designer-image">
+          <img src="images/designers/jihyeok-eom.jpg" alt="Jihyeok Eom" />
+        </div>
         <div class="designer-info">
           <p class="designer-name">Jihyeok Eom</p>
+          <p class="designer-role">Industrial Designer</p>
+        </div>
+      </div>
+
+      <div class="designer-item">
+        <div class="designer-image">
+          <img src="images/designers/wanhyeok-choi.jpg" alt="Wanhyeok Choi" />
+        </div>
+        <div class="designer-info">
+          <p class="designer-name">Wanhyeok Choi</p>
+          <p class="designer-role">Industrial Designer</p>
+        </div>
+      </div>
+
+      <div class="designer-item">
+        <div class="designer-image"></div>
+        <div class="designer-info">
+          <p class="designer-name">Hanul Park</p>
           <p class="designer-role">Industrial Designer</p>
         </div>
       </div>
