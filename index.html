@@ -292,18 +292,26 @@
     }
 
     .designer-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-    }
-
-    .designer-item {
       display: flex;
       flex-direction: column;
     }
 
+    .designer-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .designer-item:first-child {
+      border-top: 1px solid var(--gray-light);
+    }
+
     .designer-image {
-      width: 100%;
+      width: 100px;
+      min-width: 100px;
       aspect-ratio: 3 / 4;
       background-color: var(--gray-light);
       overflow: hidden;
@@ -318,7 +326,7 @@
     }
 
     .designer-info {
-      padding: 24px 0 0;
+      padding: 0;
     }
 
     .designer-name {
@@ -492,10 +500,6 @@
       }
 
       .works-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .designer-grid {
         grid-template-columns: 1fr;
       }
     }
