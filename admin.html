@@ -8,172 +8,107 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --black: #111111;
-      --white: #ffffff;
-      --gray-light: #e8e8e8;
-      --gray-mid: #999999;
-      --gray-bg: #f7f7f7;
+      --black: #111111; --white: #ffffff;
+      --gray-light: #e8e8e8; --gray-mid: #999999; --gray-bg: #f7f7f7;
+      --green: #1a7f37; --red: #cc3300;
       --font: 'Pretendard', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    body {
-      font-family: var(--font);
-      background: var(--white);
-      color: var(--black);
-      font-size: 14px;
-      line-height: 1.6;
-      letter-spacing: -0.03em;
-    }
+    body { font-family: var(--font); background: var(--white); color: var(--black); font-size: 14px; line-height: 1.6; letter-spacing: -0.03em; }
 
     /* ── LOGIN ── */
-    #login-screen {
-      position: fixed; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--white); z-index: 1000;
-    }
+    #login-screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--white); z-index: 1000; }
     .login-box { width: 300px; display: flex; flex-direction: column; gap: 14px; }
     .login-brand { font-size: 15px; font-weight: 600; }
     .login-sub { font-size: 12px; color: var(--gray-mid); }
-    .login-box input[type="password"] {
-      width: 100%; padding: 11px 14px;
-      border: 1px solid var(--gray-light);
-      font-family: var(--font); font-size: 13px;
-      letter-spacing: -0.03em; outline: none;
-    }
-    .login-box input[type="password"]:focus { border-color: var(--black); }
-    .login-btn {
-      width: 100%; padding: 12px;
-      background: var(--black); color: var(--white);
-      border: none; font-family: var(--font);
-      font-size: 13px; letter-spacing: -0.03em; cursor: pointer;
-    }
-    .login-error { font-size: 12px; color: #cc3300; min-height: 18px; }
+    .login-box input { width: 100%; padding: 11px 14px; border: 1px solid var(--gray-light); font-family: var(--font); font-size: 13px; letter-spacing: -0.03em; outline: none; }
+    .login-box input:focus { border-color: var(--black); }
+    .login-btn { width: 100%; padding: 12px; background: var(--black); color: var(--white); border: none; font-family: var(--font); font-size: 13px; letter-spacing: -0.03em; cursor: pointer; }
+    .login-error { font-size: 12px; color: var(--red); min-height: 18px; }
 
     /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 20px 48px; background: var(--white);
-      border-bottom: 1px solid var(--gray-light);
-    }
+    nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 20px 48px; background: var(--white); border-bottom: 1px solid var(--gray-light); }
     .nav-logo { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--black); }
-    .nav-badge {
-      font-size: 10px; color: var(--gray-mid);
-      text-transform: uppercase; letter-spacing: 0.08em;
-      border: 1px solid var(--gray-light); padding: 3px 8px;
-    }
-    .logout-btn {
-      font-family: var(--font); font-size: 12px;
-      letter-spacing: -0.03em; color: var(--gray-mid);
-      background: none; border: 1px solid var(--gray-light);
-      padding: 6px 14px; cursor: pointer;
-      transition: color 0.2s, border-color 0.2s;
-    }
+    .nav-badge { font-size: 10px; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.08em; border: 1px solid var(--gray-light); padding: 3px 8px; }
+    .logout-btn { font-family: var(--font); font-size: 12px; letter-spacing: -0.03em; color: var(--gray-mid); background: none; border: 1px solid var(--gray-light); padding: 6px 14px; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
     .logout-btn:hover { color: var(--black); border-color: var(--black); }
 
     /* ── MAIN ── */
-    main { max-width: 760px; margin: 0 auto; padding: 52px 0 120px; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 0 120px; }
 
-    /* ── UPLOAD BAR ── */
-    .upload-bar {
-      display: flex; align-items: center; gap: 16px;
-      border: 1px solid var(--gray-light);
-      padding: 18px 20px; margin-bottom: 52px;
-    }
-    .upload-bar-label { font-size: 12px; color: var(--gray-mid); flex: 1; }
-    .upload-bar-btn {
+    /* ── TOKEN SECTION ── */
+    .token-section { border: 1px solid var(--gray-light); padding: 20px; margin-bottom: 40px; display: flex; flex-direction: column; gap: 10px; }
+    .token-row { display: flex; gap: 10px; align-items: center; }
+    .token-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-mid); margin-bottom: 4px; }
+    .token-input { flex: 1; padding: 10px 13px; border: 1px solid var(--gray-light); font-family: var(--font); font-size: 13px; letter-spacing: -0.03em; outline: none; }
+    .token-input:focus { border-color: var(--black); }
+    .token-btn { padding: 10px 18px; background: var(--black); color: var(--white); border: none; font-family: var(--font); font-size: 12px; letter-spacing: -0.03em; cursor: pointer; white-space: nowrap; }
+    .token-status { font-size: 12px; }
+    .token-status.ok { color: var(--green); }
+    .token-status.err { color: var(--red); }
+    .token-guide { font-size: 11px; color: var(--gray-mid); line-height: 1.7; }
+    .token-guide a { color: var(--gray-mid); }
+
+    /* ── LOAD BAR ── */
+    .load-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+    .load-bar-label { font-size: 12px; color: var(--gray-mid); }
+    .load-num-input { width: 64px; padding: 8px 12px; border: 1px solid var(--gray-light); font-family: var(--font); font-size: 13px; letter-spacing: -0.03em; text-align: center; outline: none; }
+    .load-num-input:focus { border-color: var(--black); }
+    .load-gh-btn, .load-file-btn {
+      padding: 8px 16px; border: 1px solid var(--gray-light); background: none;
       font-family: var(--font); font-size: 12px; letter-spacing: -0.03em;
-      padding: 8px 16px; border: 1px solid var(--gray-light);
-      background: none; cursor: pointer; white-space: nowrap;
-      transition: border-color 0.2s;
+      cursor: pointer; transition: border-color 0.2s; white-space: nowrap;
     }
-    .upload-bar-btn:hover { border-color: var(--black); }
-    #edit-file-input { display: none; }
-    #loaded-name { font-size: 12px; color: var(--black); }
+    .load-gh-btn:hover, .load-file-btn:hover { border-color: var(--black); }
+    #load-file-input { display: none; }
+    #loaded-info { font-size: 12px; color: var(--gray-mid); }
 
-    /* ── FORM SECTIONS ── */
-    .form-section { margin-bottom: 44px; }
-    .section-title {
-      font-size: 10px; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--gray-mid);
-      padding-bottom: 14px; border-bottom: 1px solid var(--gray-light);
-      margin-bottom: 22px;
-    }
-    .form-row {
-      display: grid; grid-template-columns: 160px 1fr;
-      gap: 16px; align-items: start; margin-bottom: 14px;
-    }
+    /* ── FORM ── */
+    .form-section { margin-bottom: 40px; }
+    .section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-mid); padding-bottom: 14px; border-bottom: 1px solid var(--gray-light); margin-bottom: 20px; }
+    .form-row { display: grid; grid-template-columns: 160px 1fr; gap: 16px; align-items: start; margin-bottom: 14px; }
     .form-row label { font-size: 12px; color: var(--gray-mid); padding-top: 10px; }
-    .form-row input,
-    .form-row textarea {
-      width: 100%; padding: 10px 13px;
-      border: 1px solid var(--gray-light);
-      font-family: var(--font); font-size: 13px;
-      letter-spacing: -0.03em; color: var(--black);
-      outline: none; resize: vertical;
+    .form-row input, .form-row textarea { width: 100%; padding: 10px 13px; border: 1px solid var(--gray-light); font-family: var(--font); font-size: 13px; letter-spacing: -0.03em; color: var(--black); outline: none; resize: vertical; transition: border-color 0.2s; }
+    .form-row input:focus, .form-row textarea:focus { border-color: var(--black); }
+    .field-hint { font-size: 11px; color: var(--gray-mid); margin-top: 5px; }
+
+    /* ── IMAGE UPLOAD ── */
+    .img-upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .img-sub-grid { display: grid; grid-template-rows: repeat(2, 1fr); gap: 4px; }
+    .img-slot {
+      position: relative; overflow: hidden; cursor: pointer;
+      background: var(--gray-bg); border: 1px dashed var(--gray-light);
+      display: flex; align-items: center; justify-content: center;
       transition: border-color 0.2s;
     }
-    .form-row input:focus,
-    .form-row textarea:focus { border-color: var(--black); }
-    .field-hint { font-size: 11px; color: var(--gray-mid); margin-top: 6px; }
-
-    /* ── IMAGE GUIDE ── */
-    .image-guide {
-      background: var(--gray-bg); padding: 14px 16px;
-      display: flex; flex-direction: column; gap: 5px;
-    }
-    .image-guide-item { font-size: 12px; font-family: 'Courier New', monospace; letter-spacing: 0; }
-    .image-guide-item .fname { color: var(--black); }
-    .image-guide-item .fnote { color: var(--gray-mid); margin-left: 8px; }
+    .img-slot:hover { border-color: var(--gray-mid); }
+    .img-slot.main-slot { aspect-ratio: 1 / 1; }
+    .img-sub-grid .img-slot { aspect-ratio: 3 / 2; }
+    .img-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: none; }
+    .slot-ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px; text-align: center; pointer-events: none; }
+    .slot-ph-icon { font-size: 20px; color: var(--gray-light); line-height: 1; }
+    .slot-ph-label { font-size: 11px; color: var(--gray-mid); }
+    .slot-ph-sub { font-size: 10px; color: var(--gray-light); }
+    .img-slot input[type="file"] { display: none; }
 
     /* ── ACTIONS ── */
-    .actions { margin: 36px 0; }
-    .btn-primary {
-      padding: 14px 32px;
-      background: var(--black); color: var(--white);
-      border: none; font-family: var(--font); font-size: 13px;
-      letter-spacing: -0.03em; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #333; }
+    .actions { margin: 40px 0 24px; display: flex; gap: 12px; align-items: center; }
+    .btn-publish { padding: 14px 36px; background: var(--black); color: var(--white); border: none; font-family: var(--font); font-size: 13px; letter-spacing: -0.03em; cursor: pointer; transition: background 0.2s; }
+    .btn-publish:hover { background: #333; }
+    .btn-publish:disabled { background: var(--gray-mid); cursor: not-allowed; }
+    .btn-download { padding: 14px 20px; background: none; color: var(--gray-mid); border: 1px solid var(--gray-light); font-family: var(--font); font-size: 12px; letter-spacing: -0.03em; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+    .btn-download:hover { color: var(--black); border-color: var(--black); }
 
-    /* ── UPLOAD GUIDE ── */
-    .upload-guide {
-      background: var(--gray-bg); padding: 24px;
-      margin-bottom: 44px;
-    }
-    .upload-guide-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-mid); margin-bottom: 14px; }
-    .upload-guide ol { padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
-    .upload-guide li { font-size: 13px; line-height: 1.6; }
-    .upload-guide code {
-      font-family: 'Courier New', monospace; font-size: 12px;
-      background: var(--white); padding: 1px 5px;
-      border: 1px solid var(--gray-light);
-      letter-spacing: 0;
-    }
-
-    /* ── SNIPPET ── */
-    .snippet-section { border-top: 1px solid var(--gray-light); padding-top: 40px; }
-    .snippet-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-mid); margin-bottom: 8px; }
-    .snippet-hint { font-size: 12px; color: var(--gray-mid); margin-bottom: 14px; line-height: 1.7; }
-    .snippet-hint code {
-      font-family: 'Courier New', monospace; font-size: 11px;
-      background: var(--gray-bg); padding: 2px 5px; letter-spacing: 0;
-    }
-    #index-snippet {
-      background: var(--gray-bg); padding: 18px 20px;
-      font-size: 12px; font-family: 'Courier New', monospace;
-      line-height: 1.7; white-space: pre; overflow-x: auto;
-      margin-bottom: 12px; letter-spacing: 0;
-      border: 1px solid var(--gray-light);
-    }
-    .snippet-actions { display: flex; align-items: center; gap: 12px; }
-    .btn-copy {
-      font-family: var(--font); font-size: 12px; letter-spacing: -0.03em;
-      padding: 8px 16px; border: 1px solid var(--gray-light);
-      background: none; cursor: pointer; transition: border-color 0.2s;
-    }
-    .btn-copy:hover { border-color: var(--black); }
-    .copy-ok { font-size: 12px; color: #006600; }
+    /* ── STATUS LOG ── */
+    .status-log { border: 1px solid var(--gray-light); padding: 0; display: none; max-height: 200px; overflow-y: auto; }
+    .status-log.visible { display: block; }
+    .status-item { padding: 10px 16px; font-size: 12px; border-bottom: 1px solid var(--gray-light); display: flex; align-items: center; gap: 10px; }
+    .status-item:last-child { border-bottom: none; }
+    .status-item.progress { color: var(--gray-mid); }
+    .status-item.success { color: var(--green); }
+    .status-item.error { color: var(--red); }
+    .status-item.done { color: var(--black); font-weight: 500; }
+    .spin { display: inline-block; animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -190,7 +125,7 @@
   </div>
 </div>
 
-<!-- ── ADMIN PANEL ── -->
+<!-- ── ADMIN ── -->
 <div id="admin-panel" style="display:none">
 
   <nav>
@@ -201,26 +136,42 @@
 
   <main>
 
-    <!-- 기존 파일 불러오기 -->
-    <div class="upload-bar">
-      <span class="upload-bar-label">기존 제품 페이지를 편집하려면 HTML 파일을 불러오세요</span>
-      <button class="upload-bar-btn" onclick="document.getElementById('edit-file-input').click()">
-        파일 불러오기
-      </button>
-      <input type="file" id="edit-file-input" accept=".html" onchange="loadExistingHTML(event)" />
-      <span id="loaded-name"></span>
+    <!-- GitHub 토큰 -->
+    <div class="token-section">
+      <p class="token-label">GitHub 연결</p>
+      <div class="token-row">
+        <input type="password" class="token-input" id="gh-token"
+               placeholder="GitHub Personal Access Token"
+               onkeydown="if(event.key==='Enter')saveToken()" />
+        <button class="token-btn" onclick="saveToken()">저장</button>
+      </div>
+      <p class="token-status" id="token-status"></p>
+      <p class="token-guide">
+        토큰이 없으면: GitHub → Settings → Developer settings → Personal access tokens → Generate new token (classic) → <strong>repo</strong> 권한 선택<br>
+        저장된 토큰은 브라우저 세션에만 유지되며 외부로 전송되지 않습니다.
+      </p>
     </div>
 
-    <form id="product-form" onsubmit="return false">
+    <!-- 기존 파일 불러오기 -->
+    <div class="load-bar">
+      <span class="load-bar-label">불러오기</span>
+      <input type="text" class="load-num-input" id="load-num" placeholder="03" />
+      <button class="load-gh-btn" onclick="loadFromGitHub()">GitHub에서</button>
+      <button class="load-file-btn" onclick="document.getElementById('load-file-input').click()">파일에서</button>
+      <input type="file" id="load-file-input" accept=".html" onchange="loadFromFile(event)" />
+      <span id="loaded-info"></span>
+    </div>
 
-      <!-- 기본 정보 -->
+    <!-- 폼 -->
+    <form onsubmit="return false">
+
       <div class="form-section">
         <p class="section-title">기본 정보</p>
         <div class="form-row">
           <label>파일 번호</label>
           <div>
             <input type="text" id="f-num" value="03" placeholder="03" oninput="updateAll()" />
-            <p class="field-hint">→ work-<span id="num-hint">03</span>.html 로 저장됩니다</p>
+            <p class="field-hint">→ work-<span id="num-hint">03</span>.html</p>
           </div>
         </div>
         <div class="form-row">
@@ -233,7 +184,6 @@
         </div>
       </div>
 
-      <!-- 세부 정보 -->
       <div class="form-section">
         <p class="section-title">세부 정보</p>
         <div class="form-row">
@@ -250,7 +200,6 @@
         </div>
       </div>
 
-      <!-- 가격 -->
       <div class="form-section">
         <p class="section-title">가격</p>
         <div class="form-row">
@@ -269,204 +218,304 @@
         </div>
       </div>
 
-      <!-- 이미지 -->
       <div class="form-section">
-        <p class="section-title">이미지</p>
+        <p class="section-title">이미지 파일명 접두사</p>
         <div class="form-row">
-          <label>파일명 접두사</label>
+          <label>접두사</label>
           <div>
             <input type="text" id="f-prefix" placeholder="bloom" oninput="updateAll()" />
-            <p class="field-hint">제품명에서 자동 생성됩니다 (소문자 영문)</p>
+            <p class="field-hint">제품명에서 자동 생성 (소문자 영문)</p>
           </div>
-        </div>
-        <div class="form-row">
-          <label>업로드할 파일</label>
-          <div class="image-guide" id="image-guide"></div>
         </div>
       </div>
 
-      <!-- 짧은 설명 -->
+      <div class="form-section">
+        <p class="section-title">이미지 업로드</p>
+        <div class="img-upload-grid">
+          <div class="img-slot main-slot" onclick="pickImg('main')" title="메인 이미지 (1:1)">
+            <img id="prev-main" alt="" />
+            <div class="slot-ph" id="ph-main">
+              <span class="slot-ph-icon">+</span>
+              <span class="slot-ph-label">메인 이미지</span>
+              <span class="slot-ph-sub">클릭하여 선택</span>
+            </div>
+            <input type="file" id="img-main" accept="image/*" onchange="previewImg('main',this)" />
+          </div>
+          <div class="img-sub-grid">
+            <div class="img-slot" onclick="pickImg('01')" title="01">
+              <img id="prev-01" alt="" />
+              <div class="slot-ph" id="ph-01">
+                <span class="slot-ph-icon">+</span>
+                <span class="slot-ph-label">이미지 01</span>
+              </div>
+              <input type="file" id="img-01" accept="image/*" onchange="previewImg('01',this)" />
+            </div>
+            <div class="img-slot" onclick="pickImg('02')" title="02">
+              <img id="prev-02" alt="" />
+              <div class="slot-ph" id="ph-02">
+                <span class="slot-ph-icon">+</span>
+                <span class="slot-ph-label">이미지 02</span>
+              </div>
+              <input type="file" id="img-02" accept="image/*" onchange="previewImg('02',this)" />
+            </div>
+            <div class="img-slot" onclick="pickImg('03')" title="03">
+              <img id="prev-03" alt="" />
+              <div class="slot-ph" id="ph-03">
+                <span class="slot-ph-icon">+</span>
+                <span class="slot-ph-label">이미지 03</span>
+              </div>
+              <input type="file" id="img-03" accept="image/*" onchange="previewImg('03',this)" />
+            </div>
+            <div class="img-slot" onclick="pickImg('04')" title="04">
+              <img id="prev-04" alt="" />
+              <div class="slot-ph" id="ph-04">
+                <span class="slot-ph-icon">+</span>
+                <span class="slot-ph-label">이미지 04</span>
+              </div>
+              <input type="file" id="img-04" accept="image/*" onchange="previewImg('04',this)" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="form-section">
         <p class="section-title">제품 설명 — 짧은 버전 (KO / EN 토글)</p>
         <div class="form-row">
           <label>한국어</label>
-          <textarea id="f-desc-ko-short" rows="5"
-            placeholder="제품 페이지 상단 오른쪽에 표시되는 짧은 설명입니다."
-            oninput="updateAll()"></textarea>
+          <textarea id="f-desc-ko-short" rows="4" placeholder="제품 페이지 오른쪽 상단에 표시됩니다" oninput="updateAll()"></textarea>
         </div>
         <div class="form-row">
           <label>English</label>
-          <textarea id="f-desc-en-short" rows="5"
-            placeholder="Short description shown in the upper right of the product page."
-            oninput="updateAll()"></textarea>
+          <textarea id="f-desc-en-short" rows="4" placeholder="Shown in the upper right of the product page" oninput="updateAll()"></textarea>
         </div>
       </div>
 
-      <!-- 전체 설명 -->
       <div class="form-section">
         <p class="section-title">제품 설명 — 전체 버전 (하단 섹션)</p>
         <div class="form-row">
           <label>한국어</label>
-          <textarea id="f-desc-ko-full" rows="8"
-            placeholder="페이지 하단에 표시되는 전체 설명입니다."
-            oninput="updateAll()"></textarea>
+          <textarea id="f-desc-ko-full" rows="7" placeholder="페이지 하단에 표시됩니다" oninput="updateAll()"></textarea>
         </div>
         <div class="form-row">
           <label>English</label>
-          <textarea id="f-desc-en-full" rows="8"
-            placeholder="Full description shown at the bottom of the page."
-            oninput="updateAll()"></textarea>
+          <textarea id="f-desc-en-full" rows="7" placeholder="Shown at the bottom of the page" oninput="updateAll()"></textarea>
         </div>
       </div>
 
     </form>
 
-    <!-- 다운로드 -->
+    <!-- 버튼 -->
     <div class="actions">
-      <button class="btn-primary" onclick="downloadHTML()">HTML 파일 다운로드</button>
+      <button class="btn-publish" id="publish-btn" onclick="publish()">GitHub에 게시하기</button>
+      <button class="btn-download" onclick="downloadHTML()">HTML만 다운로드</button>
     </div>
 
-    <!-- 업로드 방법 안내 -->
-    <div class="upload-guide">
-      <p class="upload-guide-title">GitHub에 업로드하는 방법</p>
-      <ol>
-        <li>다운로드된 <code>work-<span class="step-num">03</span>.html</code> 파일을 GitHub 저장소 루트에 업로드하세요.</li>
-        <li>이미지 파일 5개 (<code id="guide-prefix">bloom</code>_main.jpg, _01~_04.jpg)를 <code>images/works/</code> 폴더에 업로드하세요.</li>
-        <li>아래의 index.html 코드를 복사해서 <code>index.html</code>의 Works 섹션에서 해당 번호 칸을 교체하세요.</li>
-      </ol>
-    </div>
-
-    <!-- index.html 스니펫 -->
-    <div class="snippet-section">
-      <p class="snippet-title">index.html에 추가할 코드</p>
-      <p class="snippet-hint">
-        <code>index.html</code>의 works-grid 안에서 해당 번호의
-        <code>&lt;div class="work-item"&gt;</code> 블록 전체를 아래 코드로 교체하세요.
-      </p>
-      <pre id="index-snippet"></pre>
-      <div class="snippet-actions">
-        <button class="btn-copy" onclick="copySnippet()">코드 복사</button>
-        <span class="copy-ok" id="copy-ok" style="display:none">복사됨 ✓</span>
-      </div>
-    </div>
+    <!-- 상태 로그 -->
+    <div class="status-log" id="status-log"></div>
 
   </main>
 </div>
 
 <script>
-  /* ── 비밀번호 ── */
-  const PASSWORD = 'warygary2025';
+  /* ── 설정 ── */
+  const LOGIN_PW = 'warygary2025';
+  const REPO     = 'jihyeokeom/jihyeokeom';
+  const BRANCH   = 'main';
 
+  /* ── 로그인 ── */
   function tryLogin() {
-    if (document.getElementById('pw-input').value === PASSWORD) {
+    if (document.getElementById('pw-input').value === LOGIN_PW) {
       document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('admin-panel').style.display = 'block';
+      document.getElementById('admin-panel').style.display  = 'block';
       sessionStorage.setItem('wg-admin', '1');
+      restoreToken();
       updateAll();
     } else {
       document.getElementById('login-error').textContent = '비밀번호가 맞지 않습니다.';
     }
   }
-
-  function logout() {
-    sessionStorage.removeItem('wg-admin');
-    location.reload();
-  }
+  function logout() { sessionStorage.clear(); location.reload(); }
 
   if (sessionStorage.getItem('wg-admin') === '1') {
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-panel').style.display = 'block';
+    document.getElementById('admin-panel').style.display  = 'block';
+    restoreToken();
   }
 
-  /* ── 유틸 ── */
-  function v(id) { return document.getElementById(id).value.trim(); }
-
-  function set(id, val) {
-    if (val != null) document.getElementById(id).value = val;
+  /* ── GitHub 토큰 ── */
+  function saveToken() {
+    const t = document.getElementById('gh-token').value.trim();
+    if (!t) return;
+    sessionStorage.setItem('wg-gh-token', t);
+    document.getElementById('token-status').textContent = '✓ 저장됨';
+    document.getElementById('token-status').className   = 'token-status ok';
+  }
+  function restoreToken() {
+    const t = sessionStorage.getItem('wg-gh-token');
+    if (t) {
+      document.getElementById('gh-token').value = t;
+      document.getElementById('token-status').textContent = '✓ 저장됨';
+      document.getElementById('token-status').className   = 'token-status ok';
+    }
   }
 
-  function formatKRW(raw) {
-    const n = parseInt(raw.replace(/[^0-9]/g, ''), 10);
-    return isNaN(n) ? '' : '₩' + n.toLocaleString('ko-KR');
+  /* ── GitHub API ── */
+  async function ghGet(path) {
+    const token = sessionStorage.getItem('wg-gh-token');
+    const res = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}?ref=${BRANCH}`,
+      { headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' } }
+    );
+    if (res.status === 404) return null;
+    if (!res.ok) { const e = await res.json().catch(()=>{}); throw new Error(e?.message || `API ${res.status}`); }
+    return res.json();
   }
 
-  function formatUSD(raw) {
-    const n = parseInt(raw.replace(/[^0-9]/g, ''), 10);
-    return isNaN(n) ? '' : '$' + n.toLocaleString('en-US') + ' USD';
+  async function ghPut(path, b64, message, sha) {
+    const token = sessionStorage.getItem('wg-gh-token');
+    const body  = { message, content: b64, branch: BRANCH };
+    if (sha) body.sha = sha;
+    const res = await fetch(
+      `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}`,
+      {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }
+    );
+    if (!res.ok) { const e = await res.json().catch(()=>{}); throw new Error(e?.message || `API ${res.status}`); }
+    return res.json();
   }
 
-  function toPrefix(name) {
-    return name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  function toB64(str)  { return btoa(unescape(encodeURIComponent(str))); }
+  function fromB64(b64){ return decodeURIComponent(escape(atob(b64.replace(/\n/g, '')))); }
+
+  function fileToB64(file) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload  = () => res(r.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
   }
 
-  function esc(s) {
-    return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  /* ── 이미지 미리보기 ── */
+  function pickImg(slot) { document.getElementById('img-' + slot).click(); }
+
+  function previewImg(slot, input) {
+    if (!input.files.length) return;
+    const r = new FileReader();
+    r.onload = e => {
+      const img = document.getElementById('prev-' + slot);
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.getElementById('ph-' + slot).style.display = 'none';
+    };
+    r.readAsDataURL(input.files[0]);
   }
 
-  /* ── 실시간 업데이트 ── */
+  function showExistingImgs(prefix) {
+    const slots = ['main', '01', '02', '03', '04'];
+    const suffixes = ['main', '01', '02', '03', '04'];
+    slots.forEach((slot, i) => {
+      const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/images/works/${prefix}_${suffixes[i]}.jpg`;
+      const img = document.getElementById('prev-' + slot);
+      const ph  = document.getElementById('ph-'   + slot);
+      img.onerror = () => { img.style.display = 'none'; ph.style.display = 'flex'; };
+      img.onload  = () => { img.style.display = 'block'; ph.style.display = 'none'; };
+      if (!document.getElementById('img-' + slot).files.length) img.src = url;
+    });
+  }
+
+  /* ── 불러오기 ── */
+  async function loadFromGitHub() {
+    const num = document.getElementById('load-num').value.trim() || v('f-num');
+    if (!num) return;
+    if (!sessionStorage.getItem('wg-gh-token')) {
+      alert('먼저 GitHub 토큰을 저장해주세요.');
+      return;
+    }
+    document.getElementById('loaded-info').textContent = '불러오는 중...';
+    try {
+      const file = await ghGet(`work-${num}.html`);
+      if (!file) { document.getElementById('loaded-info').textContent = '파일을 찾을 수 없습니다'; return; }
+      parseAndFill(fromB64(file.content), num);
+      document.getElementById('loaded-info').textContent = `work-${num}.html 로드됨`;
+    } catch (e) {
+      document.getElementById('loaded-info').textContent = '오류: ' + e.message;
+    }
+  }
+
+  function loadFromFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const numMatch = file.name.match(/work-(\d+)\.html/i);
+    const num = numMatch ? numMatch[1] : null;
+    const reader = new FileReader();
+    reader.onload = e => { parseAndFill(e.target.result, num); document.getElementById('loaded-info').textContent = file.name + ' 로드됨'; };
+    reader.readAsText(file);
+  }
+
+  function parseAndFill(html, num) {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    if (num) set('f-num', num);
+    set('f-name',     doc.querySelector('.product-name')?.textContent?.trim());
+    set('f-type',     doc.querySelector('.product-type')?.textContent?.trim());
+    doc.querySelectorAll('.meta-row').forEach(row => {
+      const key = row.querySelector('.meta-key')?.textContent?.trim();
+      const val = row.querySelector('.meta-val')?.textContent?.trim();
+      if (key === 'Designer') set('f-designer', val);
+      if (key === 'Material') set('f-material', val);
+      if (key === 'Year')     set('f-year', val);
+    });
+    set('f-krw', (doc.querySelector('.price-krw')?.textContent?.trim() || '').replace(/[₩,\s]/g, ''));
+    set('f-usd', (doc.querySelector('.price-usd')?.textContent?.trim() || '').replace(/[$,\sUSD]/g, ''));
+    set('f-desc-ko-short', doc.getElementById('desc-ko')?.textContent?.trim());
+    set('f-desc-en-short', doc.getElementById('desc-en')?.textContent?.trim());
+    const dt = doc.querySelectorAll('.desc-block .desc-text');
+    if (dt[0]) set('f-desc-ko-full', dt[0].textContent.trim());
+    if (dt[1]) set('f-desc-en-full', dt[1].textContent.trim());
+    const pm = html.match(/allSrcs\s*=\s*\[\s*['"]images\/works\/([^_'"]+)_main/);
+    if (pm) { set('f-prefix', pm[1]); document.getElementById('f-prefix').dataset.manual = '1'; }
+    updateAll();
+    const prefix = v('f-prefix') || toPrefix(v('f-name'));
+    if (prefix) showExistingImgs(prefix);
+  }
+
+  /* ── 폼 유틸 ── */
+  function v(id)       { return document.getElementById(id).value.trim(); }
+  function set(id, val){ if (val != null) document.getElementById(id).value = val; }
+
+  function formatKRW(r){ const n=parseInt(r.replace(/\D/g,''),10); return isNaN(n)?'':'₩'+n.toLocaleString('ko-KR'); }
+  function formatUSD(r){ const n=parseInt(r.replace(/\D/g,''),10); return isNaN(n)?'':'$'+n.toLocaleString('en-US')+' USD'; }
+  function toPrefix(s) { return (s||'').toLowerCase().replace(/[^a-z0-9]/g,''); }
+  function esc(s)      { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
   function updateAll() {
-    const num    = v('f-num') || '03';
-    const name   = v('f-name');
-    const type   = v('f-type');
-    const prefix = v('f-prefix') || toPrefix(name) || 'product';
-
+    const num = v('f-num')||'03';
     document.getElementById('num-hint').textContent = num;
-    document.querySelectorAll('.step-num').forEach(el => el.textContent = num);
-
-    const krwFmt = formatKRW(v('f-krw'));
-    const usdFmt = formatUSD(v('f-usd'));
-    document.getElementById('krw-hint').textContent = krwFmt ? '→ ' + krwFmt : '';
-    document.getElementById('usd-hint').textContent = usdFmt ? '→ ' + usdFmt : '';
-
-    // 이미지 가이드
-    const files = [
-      [prefix + '_main.jpg', '메인 이미지 (1:1 비율)'],
-      [prefix + '_01.jpg', ''],
-      [prefix + '_02.jpg', ''],
-      [prefix + '_03.jpg', ''],
-      [prefix + '_04.jpg', ''],
-    ];
-    document.getElementById('image-guide').innerHTML = files.map(([f, note]) =>
-      `<div class="image-guide-item"><span class="fname">${f}</span>${note ? `<span class="fnote">${note}</span>` : ''}</div>`
-    ).join('');
-
-    const guidePrefix = document.getElementById('guide-prefix');
-    if (guidePrefix) guidePrefix.textContent = prefix;
-
-    // index.html 스니펫
-    document.getElementById('index-snippet').textContent =
-      generateIndexSnippet(num, name, type, prefix);
+    const kf = formatKRW(v('f-krw')); document.getElementById('krw-hint').textContent = kf ? '→ '+kf : '';
+    const uf = formatUSD(v('f-usd')); document.getElementById('usd-hint').textContent = uf ? '→ '+uf : '';
+    if (!document.getElementById('f-prefix').dataset.manual && v('f-name'))
+      document.getElementById('f-prefix').value = toPrefix(v('f-name'));
   }
 
-  function generateIndexSnippet(num, name, type, prefix) {
-    return `<a class="work-item" href="work-${num}.html">
-  <div class="work-image">
-    <img src="images/works/${prefix}_main.jpg" alt="${name}" />
-  </div>
-  <div class="work-info">
-    <p class="work-index">${num}</p>
-    <p class="work-name">${name}</p>
-    <p class="work-desc">${type}</p>
-  </div>
-</a>`;
-  }
+  document.getElementById('f-name').addEventListener('input', () => {
+    if (!document.getElementById('f-prefix').dataset.manual)
+      document.getElementById('f-prefix').value = toPrefix(v('f-name'));
+  });
+  document.getElementById('f-prefix').addEventListener('input', () => {
+    document.getElementById('f-prefix').dataset.manual = '1';
+  });
 
   /* ── HTML 생성 ── */
   function generateHTML() {
-    const num      = v('f-num')          || '03';
-    const name     = v('f-name')         || 'Product';
-    const type     = v('f-type')         || '';
-    const designer = v('f-designer')     || '';
-    const material = v('f-material')     || '';
-    const year     = v('f-year')         || '2025';
-    const prefix   = v('f-prefix')       || toPrefix(name) || 'product';
-    const krw      = formatKRW(v('f-krw')) || v('f-krw');
-    const usd      = formatUSD(v('f-usd')) || v('f-usd');
-    const dKoS     = esc(v('f-desc-ko-short'));
-    const dEnS     = esc(v('f-desc-en-short'));
-    const dKoF     = esc(v('f-desc-ko-full'));
-    const dEnF     = esc(v('f-desc-en-full'));
-
+    const num=v('f-num')||'03', name=v('f-name')||'Product', type=v('f-type')||'';
+    const designer=v('f-designer')||'', material=v('f-material')||'', year=v('f-year')||'2025';
+    const prefix=v('f-prefix')||toPrefix(name)||'product';
+    const krw=formatKRW(v('f-krw'))||v('f-krw'), usd=formatUSD(v('f-usd'))||v('f-usd');
+    const dKoS=esc(v('f-desc-ko-short')), dEnS=esc(v('f-desc-en-short'));
+    const dKoF=esc(v('f-desc-ko-full')),  dEnF=esc(v('f-desc-en-full'));
     return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -476,11 +525,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black: #111111; --white: #ffffff;
-      --gray-light: #e8e8e8; --gray-mid: #999999;
-      --font: 'Pretendard', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
+    :root { --black: #111111; --white: #ffffff; --gray-light: #e8e8e8; --gray-mid: #999999; --font: 'Pretendard', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
     body { font-family: var(--font); background: var(--white); color: var(--black); font-size: 14px; line-height: 1.6; letter-spacing: -0.03em; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 28px 48px; background: var(--white); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
     nav.scrolled { border-color: var(--gray-light); }
@@ -546,7 +591,6 @@
   </style>
 </head>
 <body>
-
   <nav id="navbar">
     <a href="index.html" class="nav-logo">Warygary Studio</a>
     <ul class="nav-links">
@@ -555,7 +599,6 @@
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
   </nav>
-
   <div class="page">
     <div class="top-section">
       <div class="image-col">
@@ -595,31 +638,21 @@
       <a href="index.html#contact" class="btn-purchase">구매하기 — Purchase</a>
       <a href="index.html#contact" class="btn-inquiry">문의하기 — Inquiry</a>
     </div>
-
     <div class="cards-section">
       <div class="card-item"><img src="images/works/${prefix}_01.jpg" alt="${esc(name)} — 01" /></div>
       <div class="card-item"><img src="images/works/${prefix}_02.jpg" alt="${esc(name)} — 02" /></div>
       <div class="card-item"><img src="images/works/${prefix}_03.jpg" alt="${esc(name)} — 03" /></div>
       <div class="card-item"><img src="images/works/${prefix}_04.jpg" alt="${esc(name)} — 04" /></div>
     </div>
-
     <div class="desc-section">
-      <div class="desc-block">
-        <span class="desc-lang">한국어</span>
-        <p class="desc-text">${dKoF}</p>
-      </div>
-      <div class="desc-block">
-        <span class="desc-lang">English</span>
-        <p class="desc-text">${dEnF}</p>
-      </div>
+      <div class="desc-block"><span class="desc-lang">한국어</span><p class="desc-text">${dKoF}</p></div>
+      <div class="desc-block"><span class="desc-lang">English</span><p class="desc-text">${dEnF}</p></div>
     </div>
-
     <div class="back-bar">
       <a href="index.html#works" class="back-link">← All Works</a>
       <span class="copy">© 2025 Warygary Studio</span>
     </div>
   </div>
-
   <div class="lb-overlay" id="lb">
     <button class="lb-close" id="lb-close">&#215;</button>
     <span class="lb-counter" id="lb-counter"></span>
@@ -628,7 +661,6 @@
     <button class="lb-btn next" id="lb-next">&#8250;</button>
     <div class="lb-dots" id="lb-dots"></div>
   </div>
-
   <script>
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -648,128 +680,142 @@
       'images/works/${prefix}_04.jpg'
     ];
     const total = allSrcs.length;
-    const lb = document.getElementById('lb');
-    const lbImg = document.getElementById('lb-img');
-    const lbDots = document.getElementById('lb-dots');
-    const lbCounter = document.getElementById('lb-counter');
+    const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img');
+    const lbDots = document.getElementById('lb-dots'), lbCounter = document.getElementById('lb-counter');
     let lbCurrent = 0;
-    allSrcs.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'lb-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => lbGoTo(i));
-      lbDots.appendChild(dot);
-    });
-    function lbGoTo(i) {
-      lbCurrent = (i + total) % total;
-      lbImg.src = allSrcs[lbCurrent];
-      lbCounter.textContent = (lbCurrent + 1) + ' / ' + total;
-      lbDots.querySelectorAll('.lb-dot').forEach((d, j) => d.classList.toggle('active', j === lbCurrent));
-    }
-    function lbOpen(i) { lbGoTo(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function lbClose() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-    document.querySelector('.main-image-box img').addEventListener('click', () => lbOpen(0));
-    document.querySelectorAll('.card-item').forEach((c, i) => c.addEventListener('click', () => lbOpen(i + 1)));
-    document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent - 1); });
-    document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbGoTo(lbCurrent + 1); });
+    allSrcs.forEach((_,i) => { const d=document.createElement('button'); d.className='lb-dot'+(i===0?' active':''); d.addEventListener('click',()=>lbGoTo(i)); lbDots.appendChild(d); });
+    function lbGoTo(i) { lbCurrent=(i+total)%total; lbImg.src=allSrcs[lbCurrent]; lbCounter.textContent=(lbCurrent+1)+' / '+total; lbDots.querySelectorAll('.lb-dot').forEach((d,j)=>d.classList.toggle('active',j===lbCurrent)); }
+    function lbOpen(i) { lbGoTo(i); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+    function lbClose() { lb.classList.remove('open'); document.body.style.overflow=''; }
+    document.querySelector('.main-image-box img').addEventListener('click', ()=>lbOpen(0));
+    document.querySelectorAll('.card-item').forEach((c,i)=>c.addEventListener('click',()=>lbOpen(i+1)));
+    document.getElementById('lb-prev').addEventListener('click', e=>{e.stopPropagation();lbGoTo(lbCurrent-1);});
+    document.getElementById('lb-next').addEventListener('click', e=>{e.stopPropagation();lbGoTo(lbCurrent+1);});
     document.getElementById('lb-close').addEventListener('click', lbClose);
-    lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
-    document.addEventListener('keydown', e => {
-      if (!lb.classList.contains('open')) return;
-      if (e.key === 'ArrowLeft') lbGoTo(lbCurrent - 1);
-      if (e.key === 'ArrowRight') lbGoTo(lbCurrent + 1);
-      if (e.key === 'Escape') lbClose();
-    });
-    let lbStartX = 0;
-    lb.addEventListener('touchstart', e => { lbStartX = e.touches[0].clientX; });
-    lb.addEventListener('touchend', e => {
-      const diff = lbStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) lbGoTo(lbCurrent + (diff > 0 ? 1 : -1));
-    });
+    lb.addEventListener('click', e=>{if(e.target===lb)lbClose();});
+    document.addEventListener('keydown', e=>{ if(!lb.classList.contains('open'))return; if(e.key==='ArrowLeft')lbGoTo(lbCurrent-1); if(e.key==='ArrowRight')lbGoTo(lbCurrent+1); if(e.key==='Escape')lbClose(); });
+    let lbStartX=0;
+    lb.addEventListener('touchstart', e=>{lbStartX=e.touches[0].clientX;});
+    lb.addEventListener('touchend', e=>{ const diff=lbStartX-e.changedTouches[0].clientX; if(Math.abs(diff)>40)lbGoTo(lbCurrent+(diff>0?1:-1)); });
   <\/script>
 </body>
 </html>`;
   }
 
-  /* ── 다운로드 ── */
-  function downloadHTML() {
-    const num  = v('f-num') || '03';
-    const html = generateHTML();
-    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href     = url;
-    a.download = 'work-' + num + '.html';
-    a.click();
-    URL.revokeObjectURL(url);
+  /* ── index.html 업데이트 ── */
+  function buildIndexItem(num, name, type, prefix) {
+    return `      <a class="work-item" href="work-${num}.html">
+        <div class="work-image">
+          <img src="images/works/${prefix}_main.jpg" alt="${esc(name)}" />
+        </div>
+        <div class="work-info">
+          <p class="work-index">${num}</p>
+          <p class="work-name">${esc(name)}</p>
+          <p class="work-desc">${esc(type)}</p>
+        </div>
+      </a>`;
   }
 
-  /* ── 스니펫 복사 ── */
-  function copySnippet() {
-    navigator.clipboard.writeText(document.getElementById('index-snippet').textContent).then(() => {
-      const ok = document.getElementById('copy-ok');
-      ok.style.display = 'inline';
-      setTimeout(() => { ok.style.display = 'none'; }, 2000);
-    });
+  function patchIndexHTML(content, num, name, type, prefix) {
+    const newItem = buildIndexItem(num, name, type, prefix);
+    // Replace placeholder <div class="work-item"> with matching work-index
+    const placeholderRe = new RegExp(
+      `[ \\t]*<div class="work-item">\\s*<div class="work-image"></div>\\s*<div class="work-info">\\s*<p class="work-index">${num}<\\/p>[\\s\\S]*?<\\/div>\\s*<\\/div>`,
+      'g'
+    );
+    let updated = content.replace(placeholderRe, newItem);
+    if (updated !== content) return updated;
+    // Replace existing <a class="work-item"> link
+    const linkRe = new RegExp(
+      `[ \\t]*<a class="work-item" href="work-${num}\\.html">[\\s\\S]*?<\\/a>`,
+      'g'
+    );
+    return content.replace(linkRe, newItem);
   }
 
-  /* ── 기존 파일 불러오기 ── */
-  function loadExistingHTML(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    document.getElementById('loaded-name').textContent = file.name;
+  /* ── 게시하기 ── */
+  async function publish() {
+    const token = sessionStorage.getItem('wg-gh-token');
+    if (!token) { alert('먼저 GitHub 토큰을 저장해주세요.'); return; }
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const text = e.target.result;
-      const doc  = new DOMParser().parseFromString(text, 'text/html');
+    const num    = v('f-num')    || '03';
+    const name   = v('f-name')   || 'Product';
+    const type   = v('f-type')   || '';
+    const prefix = v('f-prefix') || toPrefix(name) || 'product';
 
-      const numMatch = file.name.match(/work-(\d+)\.html/i);
-      if (numMatch) set('f-num', numMatch[1]);
+    const logEl  = document.getElementById('status-log');
+    const pubBtn = document.getElementById('publish-btn');
+    logEl.innerHTML = '';
+    logEl.classList.add('visible');
+    pubBtn.disabled = true;
 
-      set('f-name',     doc.querySelector('.product-name')?.textContent?.trim());
-      set('f-type',     doc.querySelector('.product-type')?.textContent?.trim());
+    function log(cls, msg) {
+      const el = document.createElement('div');
+      el.className = 'status-item ' + cls;
+      el.innerHTML = cls === 'progress'
+        ? `<span class="spin">↻</span> ${msg}`
+        : (cls === 'success' ? `✓ ${msg}` : cls === 'error' ? `✕ ${msg}` : msg);
+      logEl.appendChild(el);
+      logEl.scrollTop = logEl.scrollHeight;
+      return el;
+    }
 
-      doc.querySelectorAll('.meta-row').forEach(row => {
-        const key = row.querySelector('.meta-key')?.textContent?.trim();
-        const val = row.querySelector('.meta-val')?.textContent?.trim();
-        if (key === 'Designer') set('f-designer', val);
-        if (key === 'Material') set('f-material', val);
-        if (key === 'Year')     set('f-year', val);
-      });
-
-      const krwText = doc.querySelector('.price-krw')?.textContent?.trim() || '';
-      const usdText = doc.querySelector('.price-usd')?.textContent?.trim() || '';
-      set('f-krw', krwText.replace(/[₩,\s]/g, ''));
-      set('f-usd', usdText.replace(/[$,\sUSD]/g, ''));
-
-      set('f-desc-ko-short', doc.getElementById('desc-ko')?.textContent?.trim());
-      set('f-desc-en-short', doc.getElementById('desc-en')?.textContent?.trim());
-
-      const descTexts = doc.querySelectorAll('.desc-block .desc-text');
-      if (descTexts[0]) set('f-desc-ko-full', descTexts[0].textContent.trim());
-      if (descTexts[1]) set('f-desc-en-full', descTexts[1].textContent.trim());
-
-      const prefixMatch = text.match(/allSrcs\s*=\s*\[\s*['"]images\/works\/([^_'"]+)_main/);
-      if (prefixMatch) {
-        set('f-prefix', prefixMatch[1]);
-        document.getElementById('f-prefix').dataset.manual = '1';
+    try {
+      // 1. 이미지 업로드
+      const imgSlots = ['main', '01', '02', '03', '04'];
+      for (const slot of imgSlots) {
+        const inp = document.getElementById('img-' + slot);
+        if (!inp.files.length) continue;
+        const suffix   = slot === 'main' ? 'main' : slot;
+        const filename = `${prefix}_${suffix}.jpg`;
+        const path     = `images/works/${filename}`;
+        const step     = log('progress', `이미지 업로드: ${filename}`);
+        const existing = await ghGet(path);
+        const b64      = await fileToB64(inp.files[0]);
+        await ghPut(path, b64, `Upload image: ${filename}`, existing?.sha);
+        step.className = 'status-item success';
+        step.innerHTML = `✓ ${filename} 업로드 완료`;
       }
 
-      updateAll();
-    };
-    reader.readAsText(file);
+      // 2. work HTML
+      const htmlStep = log('progress', `work-${num}.html 생성 중...`);
+      const htmlContent  = generateHTML();
+      const existingHtml = await ghGet(`work-${num}.html`);
+      await ghPut(`work-${num}.html`, toB64(htmlContent), `Product page: ${name} (work-${num})`, existingHtml?.sha);
+      htmlStep.className = 'status-item success';
+      htmlStep.innerHTML = `✓ work-${num}.html 저장 완료`;
+
+      // 3. index.html
+      const idxStep  = log('progress', 'index.html 업데이트 중...');
+      const idxFile  = await ghGet('index.html');
+      const idxOld   = fromB64(idxFile.content);
+      const idxNew   = patchIndexHTML(idxOld, num, name, type, prefix);
+      if (idxNew !== idxOld) {
+        await ghPut('index.html', toB64(idxNew), `Add work ${num} to index: ${name}`, idxFile.sha);
+        idxStep.className = 'status-item success';
+        idxStep.innerHTML = '✓ index.html 업데이트 완료';
+      } else {
+        idxStep.className = 'status-item success';
+        idxStep.innerHTML = '✓ index.html (변경 없음)';
+      }
+
+      log('done', '게시 완료! 사이트 반영까지 1~2분 소요됩니다.');
+    } catch (err) {
+      log('error', '오류: ' + err.message);
+    } finally {
+      pubBtn.disabled = false;
+    }
   }
 
-  /* ── 이름 자동완성 ── */
-  document.getElementById('f-name').addEventListener('input', function() {
-    const pfxEl = document.getElementById('f-prefix');
-    if (!pfxEl.dataset.manual) pfxEl.value = toPrefix(this.value);
-    updateAll();
-  });
-  document.getElementById('f-prefix').addEventListener('input', function() {
-    this.dataset.manual = '1';
-    updateAll();
-  });
+  /* ── HTML 다운로드 (오프라인 백업) ── */
+  function downloadHTML() {
+    const num  = v('f-num') || '03';
+    const blob = new Blob([generateHTML()], { type: 'text/html;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = `work-${num}.html`; a.click();
+    URL.revokeObjectURL(url);
+  }
 
   updateAll();
 </script>
